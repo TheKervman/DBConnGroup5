@@ -24,7 +24,7 @@ CREATE TABLE Student(
 	studID int,
 	studName varchar(25),
 	email varchar(35),
-	interestID int
+	interestID int,
 	PRIMARY KEY (studID)
 );
 
@@ -45,8 +45,8 @@ CREATE TABLE  Topic(
 	facID int,
 	tags char(4),
 	topicDescription varchar(250),
-	PRIMARY KEY (topicID),
-	FOREIGN KEY (facID)
+	PRIMARY KEY(topicID),
+	FOREIGN KEY(facID)
 );
 
 CREATE TABLE  Interview(

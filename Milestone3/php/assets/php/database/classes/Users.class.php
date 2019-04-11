@@ -6,6 +6,6 @@ class Users {
     private $role;
 
     public function whoAmI() {
-        return "ID {$this->userID} registered as {$this->userName}, has a role of {$this->role}";
+        return "ID {$this->userID} registered as {$this->userName}, with password {$this->password} has a role of {$this->role}";
     }
 }
