@@ -15,7 +15,7 @@ class DB {
         try {
             include "Users.class.php";
             $data = array();
-            $stmt = $this->dbh->prepare("SELECT * FROM users");
+            $stmt = $this->dbh->prepare("SELECT * FROM Users");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, "Users");
             while ($person = $stmt->fetch()) {
