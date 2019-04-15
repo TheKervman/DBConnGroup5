@@ -6,3 +6,7 @@ body {
     margin-right: 50px;
     text-align: center;
 }
+
+body h1 {
+    text-decoration: underline;
+}
