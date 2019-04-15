@@ -9,6 +9,8 @@
 
     <h1>Home</h1>
 
+    <p>test sentences</p>
+
 </body>
 
 <?php include('assets/php/elements/footer.php'); ?>
