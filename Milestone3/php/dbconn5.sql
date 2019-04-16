@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS dbconn5;
 CREATE DATABASE dbconn5;
 
 CREATE TABLE Users(
-	userID int,
+	userID int AUTO_INCREMENT NOT NULL,
 	userName varchar(25),
 	password varchar(25),
 	role varchar(25),
