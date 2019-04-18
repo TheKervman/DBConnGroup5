@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+    font-family: "Myriad Pro","Helvetica Neue",Arial, Helvetica, sans-serif
+}
+
+.dbform table {
+    margin: auto;
+    padding: 10px;
+    border: 1;
+}
