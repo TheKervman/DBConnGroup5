@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS dbconn5;
-
 CREATE DATABASE dbconn5;
-
 USE dbconn5;
 
 CREATE TABLE Users(
@@ -14,39 +12,35 @@ CREATE TABLE Users(
 
 CREATE TABLE Faculty(
 	userID int,
-	UNIQUE facName varchar(25),
+	facName varchar(25),
 	departmentCode char(3),
 	topicCode char(4),
 	interviewID int,
 	presentationID int,
 	PRIMARY KEY (userID),
-	FOREIGN KEY (departmantCode) REFERENCES Department(departmentCode),
-	FOREIGN KEY (userID) REFERENCES Users(userID),
-	FOREIGN KEY (interviewID) REFERENCES Interview(interviewID)
-	FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID)
-
-
+	CONSTRAINT FK_DepartmentCode FOREIGN KEY (departmentCode) REFERENCES Department(departmentCode),
+	CONSTRAINT FK_UserID FOREIGN KEY (userID) REFERENCES Users(userID),
+	CONSTRAINT FK_InterviewID FOREIGN KEY (interviewID) REFERENCES Interview(interviewID),
+	CONSTRAINT FK_PresentationID FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID),
+    UNIQUE (facName)
 );
 
 CREATE TABLE Student(
-	userID int
+	userID int,
 	studName varchar(25),
 	email varchar(35),
 	topicID int,
-	PRIMARY KEY (userID)
+	PRIMARY KEY (userID),
 	FOREIGN KEY (userID) REFERENCES Users(userID),
             FOREIGN KEY (topicID) REFERENCES Topic(topicID)
-
 );
-
-
-
 
 CREATE TABLE  Department(
 	departmentID int,
-	UNQIUE departmentName varchar(25),
+	departmentName varchar(25),
 	departmentCode char(3),
-	PRIMARY KEY(departmentID)
+	PRIMARY KEY(departmentID),
+    UNIQUE (departmentCode)
 );
 
 CREATE TABLE  Topic(
@@ -64,9 +58,8 @@ CREATE TABLE  Interview(
 	interviewName varchar(25),
 	interviewDate date,
 	facName varchar(25),
-	PRIMARY KEY(interviewID)
+	PRIMARY KEY(interviewID),
 	FOREIGN KEY (facName) REFERENCES Faculty(facName)
-
 );
 
 CREATE TABLE  Presentation(
@@ -74,9 +67,6 @@ CREATE TABLE  Presentation(
 	presentationName varchar(25),
 	presentationDate date,
 	facName varchar(25),
-	PRIMARY KEY(presentationID)
+	PRIMARY KEY(presentationID),
 	FOREIGN KEY (facName) REFERENCES Faculty(facName)
-
 );
-
-
