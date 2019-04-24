@@ -5,60 +5,78 @@ CREATE DATABASE dbconn5;
 USE dbconn5;
 
 CREATE TABLE Users(
-	userID int,
-	userName varchar(25),
-	password varchar(25),
-	role varchar(25),
+	userID int(4) ZEROFILL AUTO_INCREMENT NOT NULL,
+	userName varchar(25) DEFAULT 'Admin',
+	password varchar(25) DEFAULT 'password',
+	role ENUM("Student", "Faculty") NOT NULL,
 	PRIMARY KEY (userID)
 );
 
 CREATE TABLE Faculty(
-	facID int,
-	facName varchar(25),
+	userID int,
+	UNIQUE facName varchar(25),
 	departmentCode char(3),
 	topicCode char(4),
-	interviewDate date,
-	presentationDate date,
-	PRIMARY KEY (facID)
+	interviewID int,
+	presentationID int,
+	PRIMARY KEY (userID),
+	FOREIGN KEY (departmantCode) REFERENCES Department(departmentCode),
+	FOREIGN KEY (userID) REFERENCES Users(userID),
+	FOREIGN KEY (interviewID) REFERENCES Interview(interviewID)
+	FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID)
+
+
 );
 
 CREATE TABLE Student(
-	studID int,
+	userID int
 	studName varchar(25),
 	email varchar(35),
-	interestID int,
-	PRIMARY KEY (studID)
+	topicID int,
+	PRIMARY KEY (userID)
+	FOREIGN KEY (userID) REFERENCES Users(userID),
+            FOREIGN KEY (topicID) REFERENCES Topic(topicID)
+
 );
+
+
+
 
 CREATE TABLE  Department(
 	departmentID int,
-	departmentName varchar(25),
+	UNQIUE departmentName varchar(25),
 	departmentCode char(3),
 	PRIMARY KEY(departmentID)
 );
 
 CREATE TABLE  Topic(
-	topicID int,
+	topicID int AUTO_INCREMENT,
 	topicName varchar(25),
 	facID int,
 	tags char(4),
 	topicDescription varchar(250),
-	PRIMARY KEY(topicID),
-	FOREIGN KEY(facID)
+	PRIMARY KEY (topicID),
+	FOREIGN KEY (facID) REFERENCES Faculty(facID)
 );
 
 CREATE TABLE  Interview(
-	interviewID int,
+	interviewID int AUTO_INCREMENT,
 	interviewName varchar(25),
 	interviewDate date,
-	facultyMemeber char(4),
+	facName varchar(25),
 	PRIMARY KEY(interviewID)
+	FOREIGN KEY (facName) REFERENCES Faculty(facName)
+
 );
 
 CREATE TABLE  Presentation(
-	presentationID int,
+	presentationID int AUTO_INCREMENT,
 	presentationName varchar(25),
 	presentationDate date,
-	facultyMemeber char(4),
+	facName varchar(25),
 	PRIMARY KEY(presentationID)
+	FOREIGN KEY (facName) REFERENCES Faculty(facName)
+
 );
+
+
