@@ -17,22 +17,18 @@ CREATE TABLE Users(
 );
 -- Create Faculty
 CREATE TABLE Faculty(
-	userID int,
+	facID int(4) ZEROFILL,
 	facName varchar(25),
 	departmentCode varchar(3),
-	topicCode char(4),
-	interviewID int,
-	presentationID int,
-	PRIMARY KEY (userID),
-    UNIQUE (facName)
+	PRIMARY KEY (facID)
 );
 -- Create Student
 CREATE TABLE Student(
-	userID int,
+	studID int(4) ZEROFILL,
 	studName varchar(25),
 	email varchar(35),
-	topicID int,
-	PRIMARY KEY (userID)
+    interestID int(4),
+	PRIMARY KEY (studID)
 );
 -- Create Department
 CREATE TABLE Department(
@@ -46,8 +42,7 @@ CREATE TABLE Department(
 CREATE TABLE Topic(
 	topicID int AUTO_INCREMENT,
 	topicName varchar(25),
-	facID int,
-	tags char(4),
+	facID int(4) ZEROFILL,
 	topicDescription varchar(250),
 	PRIMARY KEY (topicID)
 );
@@ -56,7 +51,7 @@ CREATE TABLE Interview(
 	interviewID int AUTO_INCREMENT,
 	interviewName varchar(25),
 	interviewDate date,
-	facName varchar(25),
+	facID int(4) ZEROFILL,
 	PRIMARY KEY(interviewID)
 );
 -- Create Presentation
@@ -64,7 +59,7 @@ CREATE TABLE Presentation(
 	presentationID int AUTO_INCREMENT,
 	presentationName varchar(25),
 	presentationDate date,
-	facName varchar(25),
+	facID int(4) ZEROFILL,
 	PRIMARY KEY(presentationID)
 );
 -- -------------------------------------------------
@@ -72,18 +67,18 @@ CREATE TABLE Presentation(
 -- -------------------------------------------------
 -- Faculty Constraints
 ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_DepartmentCode FOREIGN KEY (departmentCode) REFERENCES Department(departmentCode);
--- ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_UserID FOREIGN KEY (userID) REFERENCES Users(userID);
-ALTER TABLE Faculty ADD CONSTRAINT FK_InterviewID FOREIGN KEY (interviewID) REFERENCES Interview(interviewID);
-ALTER TABLE Faculty ADD CONSTRAINT FK_PresentationID FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID);
+ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_UserID FOREIGN KEY (facID) REFERENCES Users(userID);
+-- ALTER TABLE Faculty ADD CONSTRAINT FK_InterviewID FOREIGN KEY (interviewID) REFERENCES Interview(interviewID);
+-- ALTER TABLE Faculty ADD CONSTRAINT FK_PresentationID FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID);
 -- Student Constraints
--- ALTER TABLE Student ADD CONSTRAINT FK_Student_UserID FOREIGN KEY (userID) REFERENCES Users(userID);
-ALTER TABLE Student ADD CONSTRAINT FK_Student_TopicID FOREIGN KEY (topicID) REFERENCES Topic(topicID);
+ALTER TABLE Student ADD CONSTRAINT FK_Student_UserID FOREIGN KEY (studID) REFERENCES Users(userID);
+ALTER TABLE Student ADD CONSTRAINT FK_Student_InterestID FOREIGN KEY (interestID) REFERENCES Topic(topicID);
 -- Topic Constraint
-ALTER TABLE Topic ADD CONSTRAINT FK_Topic_FacID FOREIGN KEY (facID) REFERENCES Faculty(userID);
+ALTER TABLE Topic ADD CONSTRAINT FK_Topic_FacID FOREIGN KEY (facID) REFERENCES Faculty(facID);
 -- Interview Constraint
-ALTER TABLE Interview ADD CONSTRAINT FK_Int_facName FOREIGN KEY (facName) REFERENCES Faculty(facName);
+ALTER TABLE Interview ADD CONSTRAINT FK_Int_facName FOREIGN KEY (facID) REFERENCES Faculty(facID);
 -- Presentation Constraint
-ALTER TABLE Presentation ADD CONSTRAINT FK_Pres_facName FOREIGN KEY (facName) REFERENCES Faculty(facName);
+ALTER TABLE Presentation ADD CONSTRAINT FK_Pres_facName FOREIGN KEY (facID) REFERENCES Faculty(facID);
 -- -------------------------------------------------
 -- Populate Users Table
 -- -------------------------------------------------
@@ -106,31 +101,44 @@ INSERT INTO Department (departmentName, departmentCode) VALUES ('Information Sci
 -- -------------------------------------------------
 -- Populate Faculty Table
 -- -------------------------------------------------
-INSERT INTO Faculty (userID, facName, departmentCode) VALUES (1, 'Sophia Ga', 'CS');
-INSERT INTO Faculty (userID, facName, departmentCode) VALUES (3, 'Harper Waack', 'IGM');
-INSERT INTO Faculty (userID, facName, departmentCode) VALUES (4, 'Noel Qadir', 'IST');
-INSERT INTO Faculty (userID, facName, departmentCode) VALUES (6, 'Gaagii Vaal', 'CS');
-INSERT INTO Faculty (userID, facName, departmentCode) VALUES (9, 'Oakley Saad', 'IGM');
+INSERT INTO Faculty (facID, facName, departmentCode) VALUES (1, 'Sophia Ga', 'CS');
+INSERT INTO Faculty (facID, facName, departmentCode) VALUES (3, 'Harper Waack', 'IGM');
+INSERT INTO Faculty (facID, facName, departmentCode) VALUES (4, 'Noel Qadir', 'IST');
+INSERT INTO Faculty (facID, facName, departmentCode) VALUES (6, 'Gaagii Vaal', 'CS');
+INSERT INTO Faculty (facID, facName, departmentCode) VALUES (9, 'Oakley Saad', 'IGM');
 -- -------------------------------------------------
 -- Populate Student Table
 -- -------------------------------------------------
-INSERT INTO Student (userID, studName, email) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu');
-INSERT INTO Student (userID, studName, email) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu');
-INSERT INTO Student (userID, studName, email) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu');
-INSERT INTO Student (userID, studName, email) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu');
-INSERT INTO Student (userID, studName, email) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu');
 -- -------------------------------------------------
 -- Populate Topic Table
 -- -------------------------------------------------
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Coding Fun', 9, 'Learn how to have fun while coding');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Gaming Stuff', 3, 'Meet other gamers in the program');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('It\'s not that bad', 6, 'Don\'t let the coding get you down, it\'s still fun');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('More Coding Fun', 9, 'Learn even more fun things');
 
 -- -------------------------------------------------
 -- Populate Interview Table
 -- -------------------------------------------------
-
+INSERT INTO Interview (interviewName, interviewDate, facID) VALUES ('Initial Interview', '2019-08-14', 1);
+INSERT INTO Interview (interviewName, interviewDate, facID) VALUES ('Final Interview', '2019-08-17', 1);
+INSERT INTO Interview (interviewName, interviewDate, facID) VALUES ('Internship', '2019-06-23', 3);
 -- -------------------------------------------------
 -- Populate Presentation Table
 -- -------------------------------------------------
+INSERT INTO Presentation (presentationName, presentationDate, facID) VALUES ('Coding Fun', '2019-05-31', 9);
 
 -- -------------------------------------------------
 -- Next Steps
 -- -------------------------------------------------
+select faculty.facid, faculty.facname, interview.interviewname, interview.interviewdate from faculty join interview on faculty.facid=interview.facid where faculty.facid=1;
+
+select faculty.facid, faculty.facname, presentation.presentationName, presentation.presentationDate from faculty join presentation on faculty.facid=presentation.facid;
+
+update student set interestID = 4 where studID = 7;
+select student.studName, student.interestID, topic.topicName, topic.topicDescription from student join topic on student.interestID=topic.topicID;
