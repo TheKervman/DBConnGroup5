@@ -6,8 +6,6 @@ import java.util.*;
 
 public class MainView {
 
-    public void printTest() {
-        System.out.println("this is just a test");
-    }
+    System.out.println("this is just a test");
 
 } // end of main view
