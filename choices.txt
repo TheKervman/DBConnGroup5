@@ -1,0 +1,11 @@
+case 1: guest
+case 2: login
+    case 2a: faculty
+        case 2a1: view topics
+        case 2a2: make/edit topics
+            case 2a2a: create new topic
+            case 2a2b: edit existing topic
+        case 2a3: view interviews
+        case 2a4: view presentations
+
+    case 2b: student
