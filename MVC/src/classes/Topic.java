@@ -1,59 +1,63 @@
-
+package classes;
 
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Presentation{
+public class Topic{
    
    
-   public int presentationID; 
-   public String presentationName;
-   public String presentationDate;
-   public String facultyMemeber;
+   public int topicID; 
+   public String topicName;
+   public int facID;
+   public String tags;
+   public String topicDescription;
    DBConnFive DBC = new DBConnFive();
    
-   public Presentation(){
+   public Users(){
    
    }
    
-   public Presentation(int presentationID){
-      this.presentationID = presentationID;
+   public Users(int topicID){
+      this.topicID = topicID;
    }
    
-   public Presentation(int presentationID, String presentationName, String presentationDate, String facultyMemeber){
-      this.presentationID = presentationID;
-      this.presentationName = presentationName;
-      this.presentationDate = presentationDate;
-      this.facultyMemeber = facultyMemeber;
+   public Topic(int topicID, String topicName, int facID, String tags, String topicDescription){
+      this.topicID = topicID;
+      this.topicName = topicName;
+      this.facID = facID;
+      this.tags = tags;
+      this.topicDescription = topicDescription;
    }
    
    //Mutator methods
-   public void setID(int ID) { presentationID = ID; }
+   public void setTopicID(int ID) { topicID = ID; }
    
-   public void setName(String name) { presentationName = name; }
+   public void setName(String name) { topicName = name; }
    
-   public void setDate(String date) { presentationDate = Date; }
+   public void setFacID(int ID) { facID = ID; }
    
-   public void setMember(String member) { facultyMemeber = member; }
+   public void setTags(String newTags) { tags = newTags; }
    
+   public void setDesc(String description) { topicDescription = description; }
    
    
    //Accessor methods
-   public void getID(int ID) { return presentationID; }
+   public void getTopicID(int ID) { return topicID; }
    
-   public void getName(String name) { return presentationName; }
+   public void getName(String name) { return topicName }
    
-   public void getDate(String date) { return presentationDate; }
+   public void getFacID(int ID) { return facID; }
    
-   public void getMember(String member) { return facultyMemeber; }
+   public void getTags(String newTags) { return tags; }
    
+   public void getDesc(String description) { return topicDescription; }
    
    
    public ArrayList selectQuery(String sql, int fields){
           DBConnFive sql = new DBConnFive();
-          query = "SELECT * from Presentation";
+          query = "SELECT * from classes.Topic";
          return sql.getData(query,fields);
    }
    

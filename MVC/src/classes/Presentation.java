@@ -1,51 +1,51 @@
-
+package classes;
 
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Interview{
+public class Presentation{
    
    
-   public int interviewID; 
-   public String interviewName;
-   public String interviewDate;
+   public int presentationID; 
+   public String presentationName;
+   public String presentationDate;
    public String facultyMemeber;
    DBConnFive DBC = new DBConnFive();
    
-   public Interview(){
+   public Presentation(){
    
    }
    
-   public Interview(int interviewID){
-      this.interviewID = interviewID;
+   public Presentation(int presentationID){
+      this.presentationID = presentationID;
    }
    
-   public Interview(int interviewID, String interviewName, String interviewDate, String facultyMemeber){
-      this.interviewID = interviewID;
-      this.interviewName = interviewName;
-      this.interviewDate = interviewDate;
+   public Presentation(int presentationID, String presentationName, String presentationDate, String facultyMemeber){
+      this.presentationID = presentationID;
+      this.presentationName = presentationName;
+      this.presentationDate = presentationDate;
       this.facultyMemeber = facultyMemeber;
    }
    
    //Mutator methods
-   public void setID(int ID) { interviewID = ID; }
+   public void setID(int ID) { presentationID = ID; }
    
-   public void setName(String name) { interviewName = name; }
+   public void setName(String name) { presentationName = name; }
    
-   public void setDate(String date) { interviewDate = Date; }
+   public void setDate(String date) { presentationDate = Date; }
    
    public void setMember(String member) { facultyMemeber = member; }
    
    
    
    //Accessor methods
-   public void getID(int ID) { return interviewID; }
+   public void getID(int ID) { return presentationID; }
    
-   public void getName(String name) { return interviewName; }
+   public void getName(String name) { return presentationName; }
    
-   public void getDate(String date) { return interviewDate; }
+   public void getDate(String date) { return presentationDate; }
    
    public void getMember(String member) { return facultyMemeber; }
    
@@ -53,7 +53,7 @@ public class Interview{
    
    public ArrayList selectQuery(String sql, int fields){
           DBConnFive sql = new DBConnFive();
-          query = "SELECT * from Interview";
+          query = "SELECT * from classes.Presentation";
          return sql.getData(query,fields);
    }
    

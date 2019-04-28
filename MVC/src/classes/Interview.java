@@ -1,63 +1,59 @@
-
+package classes;
 
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Topic{
+public class Interview{
    
    
-   public int topicID; 
-   public String topicName;
-   public int facID;
-   public String tags;
-   public String topicDescription;
+   public int interviewID; 
+   public String interviewName;
+   public String interviewDate;
+   public String facultyMemeber;
    DBConnFive DBC = new DBConnFive();
    
-   public Users(){
+   public Interview(){
    
    }
    
-   public Users(int topicID){
-      this.topicID = topicID;
+   public Interview(int interviewID){
+      this.interviewID = interviewID;
    }
    
-   public Topic(int topicID, String topicName, int facID, String tags, String topicDescription){
-      this.topicID = topicID;
-      this.topicName = topicName;
-      this.facID = facID;
-      this.tags = tags;
-      this.topicDescription = topicDescription;
+   public Interview(int interviewID, String interviewName, String interviewDate, String facultyMemeber){
+      this.interviewID = interviewID;
+      this.interviewName = interviewName;
+      this.interviewDate = interviewDate;
+      this.facultyMemeber = facultyMemeber;
    }
    
    //Mutator methods
-   public void setTopicID(int ID) { topicID = ID; }
+   public void setID(int ID) { interviewID = ID; }
    
-   public void setName(String name) { topicName = name; }
+   public void setName(String name) { interviewName = name; }
    
-   public void setFacID(int ID) { facID = ID; }
+   public void setDate(String date) { interviewDate = Date; }
    
-   public void setTags(String newTags) { tags = newTags; }
+   public void setMember(String member) { facultyMemeber = member; }
    
-   public void setDesc(String description) { topicDescription = description; }
    
    
    //Accessor methods
-   public void getTopicID(int ID) { return topicID; }
+   public void getID(int ID) { return interviewID; }
    
-   public void getName(String name) { return topicName }
+   public void getName(String name) { return interviewName; }
    
-   public void getFacID(int ID) { return facID; }
+   public void getDate(String date) { return interviewDate; }
    
-   public void getTags(String newTags) { return tags; }
+   public void getMember(String member) { return facultyMemeber; }
    
-   public void getDesc(String description) { return topicDescription; }
    
    
    public ArrayList selectQuery(String sql, int fields){
           DBConnFive sql = new DBConnFive();
-          query = "SELECT * from Topic";
+          query = "SELECT * from classes.Interview";
          return sql.getData(query,fields);
    }
    

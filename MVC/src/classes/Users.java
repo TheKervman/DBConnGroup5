@@ -1,3 +1,5 @@
+package classes;
+
 import java.sql.*;
 import java.util.*;
 
@@ -60,7 +62,7 @@ public class Users {
    
    public ArrayList selectQuery(String sql, int fields){
           MySQLDatabase sql = new MySQLDatabase();
-          query = "SELECT * from Users";
+          query = "SELECT * from classes.Users";
          return sql.getData(query,fields);
    }
    

@@ -1,3 +1,5 @@
+package classes;
+
 import java.sql.*;
 import java.util.ArrayList;
 public class Department{
@@ -35,7 +37,7 @@ public void setdepartmentCode(String newdepartmentCode){
    }
 public ArrayList selectQuery(String sql, int fields){
    DBConnFive sql = new DBConnFive();
-   query = "SELECT * from Department";
+   query = "SELECT * from classes.Department";
    return sql.getData(query,fields);
    }
 

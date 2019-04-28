@@ -1,3 +1,5 @@
+package classes;
+
 import java.sql.*;
 import java.util.ArrayList;
 public class Student{
@@ -41,7 +43,7 @@ public void setinterestID(int newinterestID){
    }
 public ArrayList selectQuery(String sql, int fields){
    DBConnFive sql = new DBConnFive();
-   query = "SELECT * from Student";
+   query = "SELECT * from classes.Student";
    return sql.getData(query,fields);
    }
 
