@@ -5,9 +5,36 @@ import controller.MainController;
 import java.util.*;
 
 public class MainView {
+   
+   public void testGuest(){
+    Scanner input = new Scanner(System.in);  // Create a Scanner object
+    System.out.println("Welcome");
 
-    public void printTest() {
-        System.out.println("this is just a test");
-    }
+    int numInput = input.nextInt();
+    
+    //checks
+    switch(numInput){
+      case 1:
+      System.out.println("Welcome Guest");
+          Scanner guestInput = new Scanner(System.in); 
+          int options = guestInput.nextInt();
+          switch(guestInput){
+            case 4:          
+               System.out.println("Showing all topics");
+          }
+      break;
+      
+       case 2:
+      System.out.println("Please Log in");
+      break;
+      
+     }
+   
+   }
+   
+   public static void main (String[] args){
+   MainView main = new MainView();
+   main.testGuest();
+   }
 
 } // end of main view
