@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class DBConnFive{
    //database on our computer
-       String uri = "jdbc:mysql://https://serenity.ist.rit.edu/~iste330t10/dbconn5?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+       String uri = "jdbc:mysql://localhost/dbconn5?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
        String driver = "com.mysql.cj.jdbc.Driver"; 
-       String user = "iste330t10";
-       String password = "worthaunt"; 
+       String user = "root";
+       String password = "student"; 
        Connection conn = null;
        
        
@@ -17,6 +17,7 @@ public class DBConnFive{
          Class.forName(driver);
       }
       catch(ClassNotFoundException cnfe){
+         cnfe.printStackTrace();
       }
          //check if database will open 
          try{
@@ -29,6 +30,7 @@ public class DBConnFive{
          
          catch (SQLException e){ 
             System.out.println("Error connecting");
+            e.printStackTrace();
          }
        return null;  
    }
