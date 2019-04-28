@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class DBConnFive{
    //database on our computer
-       String uri = "jdbc:mysql://https://serenity.ist.rit.edu/~iste330t10/dbconn5?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-       String driver = "com.mysql.cj.jdbc.Driver"; 
-       String user = "iste330t10";
-       String password = "worthaunt"; 
+       String uri = "jdbc:mysql://localhost/dbconn5?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+       String driver = "com.mysql.cj.jdbc.Driver";
+       String pass = "student";
+       String user = "root";
        Connection conn = null;
        
        
@@ -17,10 +17,14 @@ public class DBConnFive{
          Class.forName(driver);
       }
       catch(ClassNotFoundException cnfe){
+      cnfe.printStackTrace();
       }
+      
          //check if database will open 
          try{
-            conn = DriverManager.getConnection(uri,user,password);
+            System.out.println(driver);
+
+            conn = DriverManager.getConnection(uri,user,pass);
             if( conn!= null || !conn.isClosed() ){
               
                return conn;
@@ -28,6 +32,8 @@ public class DBConnFive{
          }
          
          catch (SQLException e){ 
+            e.printStackTrace();
+            e.getCause();
             System.out.println("Error connecting");
          }
        return null;  
