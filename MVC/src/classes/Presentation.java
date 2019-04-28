@@ -41,13 +41,13 @@ public class Presentation{
    
    
    //Accessor methods
-   public void getID(int ID) { return presentationID; }
+   public int getID(int ID) { return presentationID; }
    
-   public void getName(String name) { return presentationName; }
+   public String getName(String name) { return presentationName; }
    
-   public void getDate(String date) { return presentationDate; }
+   public String getDate(String date) { return presentationDate; }
    
-   public void getMember(String member) { return facultyMemeber; }
+   public String getMember(String member) { return facultyMemeber; }
    
    
    

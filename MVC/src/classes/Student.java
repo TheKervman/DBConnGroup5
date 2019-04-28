@@ -23,7 +23,7 @@ public int getstudID(){
 public String getstudName(){
       return studName;
    }
-public String () getemail{
+public String getEmail() {
       return email;
    }
 public int getinterestID(){

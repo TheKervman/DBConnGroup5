@@ -5,6 +5,10 @@ import controller.MainController;
 import java.util.*;
 
 public class MainView {
+
+    public MainView() {
+        testGuest();
+    }
    
    public void testGuest(){
     Scanner input = new Scanner(System.in);  // Create a Scanner object
@@ -27,14 +31,7 @@ public class MainView {
        case 2:
       System.out.println("Please Log in");
       break;
-      
      }
-   
-   }
-   
-   public static void main (String[] args){
-   MainView main = new MainView();
-   main.testGuest();
    }
 
 } // end of main view

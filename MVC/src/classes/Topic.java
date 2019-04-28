@@ -15,11 +15,10 @@ public class Topic{
    public String topicDescription;
    DBConnFive DBC = new DBConnFive();
    
-   public Users(){
-   
+   public void Users(){
    }
    
-   public Users(int topicID){
+   public void Users(int topicID){
       this.topicID = topicID;
    }
    
@@ -46,7 +45,7 @@ public class Topic{
    //Accessor methods
    public void getTopicID(int ID) { return topicID; }
    
-   public void getName(String name) { return topicName }
+   public void getName(String name) { return topicName; }
    
    public void getFacID(int ID) { return facID; }
    
