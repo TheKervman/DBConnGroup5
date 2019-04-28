@@ -36,15 +36,18 @@ public class DBConnFive{
    }
    
    
-   public ArrayList getData(String sql, int fields){
+   public ArrayList getData(String sql){
    //SELECT QUERY 
       ArrayList data = new ArrayList();
       try(Connection connect = this.connect()){
          String query= sql;
          Statement state = conn.createStatement();
          ResultSet rs = state.executeQuery(query);
+         ResultSetMetaData rsmd = rs.getMetaData();
+         int colCount = rsmd.getColumnCount();
+         
          while(rs.next()){
-            for(int i = 1; i <= fields; i++){
+            for(int i = 1; i <=  colCount; i++){
                   data.add(rs.getString(i) + '\t');
             }   
          }
