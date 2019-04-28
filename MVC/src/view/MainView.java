@@ -42,7 +42,7 @@ public class MainView {
 
                        String sql3 = "INSERT INTO Presentation (presentationName, presentationDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
                        Presentation.insertQuery(sql3);
-               }
+               } // end of guest switch
                break;
 
            case 2:
@@ -56,6 +56,6 @@ public class MainView {
            default:
                System.out.println("Not a valid number.");
                break;
-       } // end of switch
+       } // end of main switch
    } // end of testGuest
 } // end of main view
