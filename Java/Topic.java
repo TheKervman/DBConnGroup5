@@ -55,7 +55,7 @@ public class Topic{
    public void getDesc(String description) { return topicDescription; }
    
    
-   public ArrayList selectQuery(String sql, int fields){
+   public ArrayList selectQuery(String sql){
           DBConnFive sql = new DBConnFive();
           query = "SELECT * from Topic";
          return sql.getData(query,fields);

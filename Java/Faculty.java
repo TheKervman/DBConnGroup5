@@ -79,7 +79,7 @@ public class Faculty {
          presentationDate = presDate;
    } 
    
-   public ArrayList selectQuery(String sql, int fields){
+   public ArrayList selectQuery(String sql){
           DBConnFive sql = new MySQLDatabase();
           query = "SELECT * from Users";
          return sql.getData(query,fields);

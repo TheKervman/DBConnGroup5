@@ -39,7 +39,8 @@ public void setemail(String newemail){
 public void setinterestID(int newinterestID){
       interestID=newinterestID;
    }
-public ArrayList selectQuery(String sql, int fields){
+
+public ArrayList selectQuery(String sql){
    DBConnFive sql = new DBConnFive();
    query = "SELECT * from Student";
    return sql.getData(query,fields);

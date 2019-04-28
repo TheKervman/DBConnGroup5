@@ -51,7 +51,7 @@ public class Presentation{
    
    
    
-   public ArrayList selectQuery(String sql, int fields){
+   public ArrayList selectQuery(String sql){
           DBConnFive sql = new DBConnFive();
           query = "SELECT * from classes.Presentation";
          return sql.getData(query,fields);

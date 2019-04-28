@@ -58,7 +58,7 @@ public class Users {
 
    }
    
-   public ArrayList selectQuery(String sql, int fields){
+   public ArrayList selectQuery(String sql){
           MySQLDatabase sql = new MySQLDatabase();
           query = "SELECT * from Users";
          return sql.getData(query,fields);

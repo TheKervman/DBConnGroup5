@@ -51,7 +51,7 @@ public class Interview{
    
    
    
-   public ArrayList selectQuery(String sql, int fields){
+   public ArrayList selectQuery(String sql){
           DBConnFive sql = new DBConnFive();
           query = "SELECT * from classes.Interview";
          return sql.getData(query,fields);

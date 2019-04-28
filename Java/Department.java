@@ -33,7 +33,8 @@ public void setdepartmentName(String newdepartmentName){
 public void setdepartmentCode(String newdepartmentCode){
       departmentCode=newdepartmentCode;
    }
-public ArrayList selectQuery(String sql, int fields){
+
+public ArrayList selectQuery(String sql){
    DBConnFive sql = new DBConnFive();
    query = "SELECT * from Department";
    return sql.getData(query,fields);
