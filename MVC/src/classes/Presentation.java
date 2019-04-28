@@ -48,14 +48,13 @@ public class Presentation{
    public String getDate(String date) { return presentationDate; }
    
    public String getMember(String member) { return facultyMemeber; }
-   
-   
-   
-   public ArrayList selectQuery(String sql){
-          DBConnFive sql = new DBConnFive();
-          query = "SELECT * from classes.Presentation";
-         return sql.getData(query,fields);
-   }
+
+
+
+    public ArrayList selectQuery(String sql){
+        DBConnFive DBCF = new DBConnFive();
+        return DBCF.getData(sql);
+    }
    
      public int updateQuery(String sql){
          int end = 0;

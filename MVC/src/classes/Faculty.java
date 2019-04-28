@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Faculty {
+
    private int facID;
    private String facName;
    private String departmentCode;
@@ -12,14 +13,12 @@ public class Faculty {
    private String presentationDate;
 
    
-   public Faculty(){
-   
-  }
+   public Faculty(){ }
   
   public Faculty(int facID){
       this.facID = facID;
    }
-   
+
    public Faculty(int facID, String facName, String departmentCode ,int topicCode, String interviewDate, String presentationDate){
       this.facID = facID;
       this.facName = facName;
@@ -28,23 +27,23 @@ public class Faculty {
       this.interviewDate = interviewDate;
       this.presentationDate = presentationDate;
    }
-   
+
+
+   //Accessors
    public int getID(){
       return facID;
    }
    
-    public String getName(){
+   public String getName(){
        return facName;
    }
    
-    public String getDepartmentCode(){
+   public String getDepartmentCode(){
           return departmentCode;
-
    }
    
-     public int getTopicCode(){
+   public int getTopicCode(){
           return topicCode;
-
    }
    
    public String getInterviewDate(){
@@ -54,23 +53,24 @@ public class Faculty {
    public String getPresentationDate(){
          return presentationDate;
    } 
-   
-    public void setID(int id){
-      facID = id;;
+
+
+
+   //Mutators
+   public void setID(int id){
+      facID = id;
    }
    
-    public void setName(String name){
+   public void setName(String name){
       facName = name;
    }
    
-    public void setDepartmentCode(String dptCode){
+   public void setDepartmentCode(String dptCode){
           departmentCode = dptCode;
-
    }
    
-     public void setTopicCode(int topic){
+   public void setTopicCode(int topic){
           topicCode = topic;
-
    }
    
    public void setInterviewDate(String intDate){
@@ -79,22 +79,23 @@ public class Faculty {
    
    public void setPresentationDate(String presDate){
          presentationDate = presDate;
-   } 
-   
-   public ArrayList selectQuery(String sql){
-          DBConnFive sql = new MySQLDatabase();
-          query = "SELECT * from classes.Users";
-         return sql.getData(query,fields);
    }
+
+
+
+    public ArrayList selectQuery(String sql){
+        DBConnFive DBCF = new DBConnFive();
+        return DBCF.getData(sql);
+    }
    
-     public int updateQuery(String sql){
+     public int updateQuery(String sql) {
          int end = 0;
          DBConnFive sql = new MySQLDatabase();
-         if(query.contains("UPDATE")){
-            end = sql.setData(query);
-         } 
+         if (query.contains("UPDATE")) {
+             end = sql.setData(query);
+         }
          return end;
-   }
+     }
    
      public int insertQuery(String sql){
          int end = 0;
@@ -103,7 +104,7 @@ public class Faculty {
             end = sql.setData(query);
          } 
          return end;
-   }
+     }
    
      public int deleteQuery(String sql){
          int end = 0;
@@ -112,5 +113,5 @@ public class Faculty {
             end = sql.setData(query);
          }
          return end;    
-   }
+     }
 }

@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Users {
+
    private int userID;
    private String userName;
    private String password;
@@ -23,7 +24,8 @@ public class Users {
       this.password = password;
       this.role = role;
    }
-   
+
+   //Accessors
    public int getID(){
       return userID;
    }
@@ -33,17 +35,18 @@ public class Users {
    }
    
    public String getPassword(){
-          return password;
-
+       return password;
    }
    
    public String getRole(){
-          return role;
-
+       return role;
    }
-   
+
+
+
+   //Mutators
    public void setID(int id){
-      return userID = id;;
+      return userID = id;
    }
    
    public void setName(String name){
@@ -51,20 +54,19 @@ public class Users {
    }
    
    public void setPassword(String pass){
-          return password = pass;
-
+       return password = pass;
    }
    
    public void setRole(String newRole){
-          return role = newRole;
+       return role = newRole;
+   }
 
-   }
-   
-   public ArrayList selectQuery(String sql){
-          MySQLDatabase sql = new MySQLDatabase();
-          query = "SELECT * from classes.Users";
-         return sql.getData(query,fields);
-   }
+
+
+    public ArrayList selectQuery(String sql){
+        DBConnFive DBCF = new DBConnFive();
+        return DBCF.getData(sql);
+    }
    
    public int updateQuery(String sql){
          int end = 0;

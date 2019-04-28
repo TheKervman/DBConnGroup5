@@ -1,8 +1,7 @@
 package view;
 
 import controller.MainController;
-import classes.Interview;
-import classes.Presentation;
+import classes.*;
 import java.util.*;
 import java.util.Scanner;
 
@@ -33,12 +32,14 @@ public class MainView {
                    case 1:
                        System.out.println("Welcome Guest");
                        Scanner guestInput = new Scanner(System.in);
+                       System.out.println("4: List all the topics\n5: Select a specific topic\n6: Set up an interview/presentation");
                        int options = guestInput.nextInt();
                        guestPrompt();
                        break;
 
                    case 2:
                        System.out.println("Please Log in");
+                       loginPrompt();
                        break;
 
                    case 3:
@@ -49,8 +50,10 @@ public class MainView {
                        System.out.println("Not a valid number.");
                        break;
                 } // end of main switch
+
                 System.out.println("\n");
                 introMessage();
+
            } catch (NumberFormatException nfe) {
                System.out.println("Please enter a valid number");
            } // end of try/catch
@@ -62,10 +65,12 @@ public class MainView {
    } // end of main user prompt
 
     private void guestPrompt() {
-        switch (guestInput) {
+        switch (options) {
             case 4:
                 System.out.println("Showing all topics");
-
+                String sql = "SELECT * FROM TOPIC;";
+                Topic.selectQuery(sql);
+                break;
             case 5:
                 System.out.println("Enter your name: ");
                 String Name = Scanner.nextLine();
@@ -76,11 +81,14 @@ public class MainView {
                 System.out.println("Enter the faculty member: ");
                 String facMember = Scanner.nextLine();
 
+                System.out.println("Do you want an interview or a presentation?")
+
                 String sql2 = "INSERT INTO Interview (interviewName, interviewDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
                 Interview.insertQuery(sql2);
 
                 String sql3 = "INSERT INTO Presentation (presentationName, presentationDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
                 Presentation.insertQuery(sql3);
+                break;
         } // end of guest switch
     }
 } // end of main view

@@ -55,9 +55,8 @@ public class Topic{
    
    
    public ArrayList selectQuery(String sql){
-          DBConnFive sql = new DBConnFive();
-          query = "SELECT * from classes.Topic";
-         return sql.getData(query,fields);
+          DBConnFive DBCF = new DBConnFive();
+         return DBCF.getData(sql);
    }
    
      public int updateQuery(String sql){

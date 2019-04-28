@@ -41,21 +41,20 @@ public class Interview{
    
    
    //Accessor methods
-   public void getID(int ID) { return interviewID; }
+   public int getID(int ID) { return interviewID; }
    
-   public void getName(String name) { return interviewName; }
+   public String getName(String name) { return interviewName; }
    
-   public void getDate(String date) { return interviewDate; }
+   public String getDate(String date) { return interviewDate; }
    
-   public void getMember(String member) { return facultyMemeber; }
-   
-   
-   
-   public ArrayList selectQuery(String sql){
-          DBConnFive sql = new DBConnFive();
-          query = "SELECT * from classes.Interview";
-         return sql.getData(query,fields);
-   }
+   public String getMember(String member) { return facultyMemeber; }
+
+
+
+    public ArrayList selectQuery(String sql){
+        DBConnFive DBCF = new DBConnFive();
+        return DBCF.getData(sql);
+    }
    
      public int updateQuery(String sql){
          int end = 0;
