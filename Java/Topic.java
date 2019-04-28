@@ -1,5 +1,4 @@
-
-
+package classes;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -15,11 +14,11 @@ public class Topic{
    public String topicDescription;
    DBConnFive DBC = new DBConnFive();
    
-   public Users(){
+   public Topic(){
    
    }
    
-   public Users(int topicID){
+   public Topic(int topicID){
       this.topicID = topicID;
    }
    
@@ -44,46 +43,46 @@ public class Topic{
    
    
    //Accessor methods
-   public void getTopicID(int ID) { return topicID; }
+   public int getTopicID(int ID) { return topicID; }
    
-   public void getName(String name) { return topicName }
+   public String getName(String name) { return topicName; }
    
-   public void getFacID(int ID) { return facID; }
+   public int getFacID(int ID) { return facID; }
    
-   public void getTags(String newTags) { return tags; }
+   public String getTags(String newTags) { return tags; }
    
-   public void getDesc(String description) { return topicDescription; }
+   public String getDesc(String description) { return topicDescription; }
    
    
-   public ArrayList selectQuery(String sql, int fields){
-          DBConnFive sql = new DBConnFive();
-          query = "SELECT * from Topic";
-         return sql.getData(query,fields);
+   public ArrayList selectQuery(String sql){
+          DBConnFive db = new DBConnFive();
+          String query = "SELECT * from Topic";
+         return db.getData(query);
    }
    
      public int updateQuery(String sql){
          int end = 0;
-         DBConnFive sql = new DBConnFive();
-         if(query.contains("UPDATE")){
-            end = sql.setData(query);
+         DBConnFive db = new DBConnFive();
+         if(sql.contains("UPDATE")){
+            end = db.setData(sql);
          } 
          return end;
    }
    
      public int insertQuery(String sql){
          int end = 0;
-         DBConnFive sql = new DBConnFive();
-         if(query.contains("INSERT")){
-            end = sql.setData(query);
+         DBConnFive db = new DBConnFive();
+         if(sql.contains("INSERT")){
+            end = db.setData(sql);
          } 
          return end;
    }
    
      public int deleteQuery(String sql){
          int end = 0;
-         DBConnFive sql = new DBConnFive();
-         if(query.contains("DELETE")){
-            end = sql.setData(query);
+         DBConnFive db = new DBConnFive();
+         if(sql.contains("DELETE")){
+            end = db.setData(sql);
          }
          return end;    
    }

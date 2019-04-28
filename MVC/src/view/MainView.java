@@ -1,8 +1,9 @@
 package view;
-
 import controller.MainController;
+import classes.*;
 
 import java.util.*;
+import java.sql.*;
 
 public class MainView {
 
@@ -22,9 +23,14 @@ public class MainView {
       System.out.println("Welcome Guest");
           Scanner guestInput = new Scanner(System.in); 
           int options = guestInput.nextInt();
-          switch(guestInput){
+          switch(options){
             case 4:          
                System.out.println("Showing all topics");
+               String sql = "SELECT Topic.topicName,Topic.topicDescription,Faculty.facName FROM Topic INNER JOIN Faculty ON Topic.facID = Faculty.facID";
+               Topic topic = new Topic();
+               System.out.println(topic.getData(sql));
+               
+               
           }
       break;
       
