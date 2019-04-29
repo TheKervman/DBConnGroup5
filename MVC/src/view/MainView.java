@@ -131,6 +131,41 @@ public class MainView {
         } // end of while
     } // end of guestPrompt
 
+    public void loginPrompt(){
+        System.out.println("Enter your username:");
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter your password: ");
+        Scanner input2 = new Scanner(System.in);
+
+        String loginName = input.nextLine();
+        String loginPassword = input2.nextLine();
+
+        while ((loginName != "") && (loginPassword != "")) {
+            loginName2 = loginName;
+            loginPass2 = loginPassword;
+            String checkRole = "SELECT role FROM Users WHERE username='"+loginName2+"' AND '"+loginPass2+"';";
+            Users.selectQuery(checkRole);
+            String role;
+            if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
+                role = rs.getString(1);
+
+                if (role == "Faculty"){
+                    facultyPrompt();
+                }
+                if(role == "Student"){
+                    studentPrompt();
+                }
+            }
+            else if(!rs.isBeforeFirst() ){
+                System.out.println("Enter a valid username and password!")
+            }
+            else{
+                System.out.println("Something went wrong!");
+            }
+        } // end of while
+    }
+
     // Clear Screen
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
