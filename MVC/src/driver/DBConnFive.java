@@ -1,3 +1,4 @@
+package driver;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -36,27 +37,37 @@ public class DBConnFive{
    }
    
    
+  
    public ArrayList getData(String sql){
-   //SELECT QUERY 
-      ArrayList data = new ArrayList();
-      try(Connection connect = this.connect()){
-         String query= sql;
-         Statement state = conn.createStatement();
-         ResultSet rs = state.executeQuery(query);
-         ResultSetMetaData rsmd = rs.getMetaData();
-         int colCount = rsmd.getColumnCount();
+   //SELECT QUERY
+          ArrayList<String> data = new ArrayList<String>();
+          String firstCol = null;
+          Statement state = null; 
+          conn = connect();
+          int col = 0;
+          try{
+            state = conn.createStatement();            
+            ResultSet rs = state.executeQuery(sql);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+             
+               while(rs.next()){
+                  for( int i = 1; i <=colCount; i++){
+                     data.add(rs.getString(i));
+                     
+                  }
+              }
+               for(String s: data){
+                 System.out.println(s);
+               }
+          } 
          
-         while(rs.next()){
-            for(int i = 1; i <=  colCount; i++){
-                  data.add(rs.getString(i) + '\t');
-            }   
-         }
+       catch(SQLException e){
+         e.printStackTrace();
       }
-      catch(SQLException e){
-         System.out.println("Error is at getData");
-      }
-      return data;
-   }
+
+     return data;
+  }
    
    public int setData(String sql){
       try(Connection connect = this.connect()){
@@ -83,9 +94,9 @@ public class DBConnFive{
       return false;
     }
     
-    public static void main (String[] args){
+    /*public static void main (String[] args){
       DBConnFive db = new DBConnFive();
       db.connect();
-    }
+    }*/
        
 }       

@@ -1,6 +1,7 @@
 package view;
 
 import controller.MainController;
+import driver.DBConnFive;
 //import classes.Interview;
 //import classes.Presentation;
 import java.util.*;
@@ -102,6 +103,8 @@ public class MainView {
                 switch (guestInput2) {
                     case 1:
                         System.out.println("Showing all topics");
+                        DBConnFive drive = new DBConnFive();
+                        drive.getData("SELECT topicName FROM Topic");
                         break;
 
                     case 2:
