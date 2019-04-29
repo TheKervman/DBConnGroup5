@@ -2,7 +2,7 @@ import controller.MainController;
 import java.util.*;
 import java.util.Scanner;
 import java.sql.*;
-public class MainView {
+public class TopicView {
    String uri = "jdbc:mysql://localhost/dbconn5?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
    String driver = "com.mysql.cj.jdbc.Driver"; 
    String user = "root";
