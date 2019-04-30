@@ -190,28 +190,6 @@ public class MainView {
         } // end of while
     } // end of guest prompt
 
-     /*private void loginPrompt() {
-        String userName = "test";
-        String password = "password";
-
-        System.out.print("Please enter your username: ");
-        Scanner name = new Scanner(System.in);
-        String uName = name.nextLine();
-
-        System.out.print("Please enter your password: ");
-        Scanner pass = new Scanner(System.in);
-        String pWord = pass.nextLine();
-
-        if (uName.equals(userName) && pWord.equals(password)) {
-            System.out.println("Login successfull!");
-            clearScreen();
-            facultyMessage();
-            facultyPrompt();
-        } else {
-            System.out.println("Incorrect username or password, please try again.");
-        }
-
-    } // end of login prompt*/
 
     private void facultyPrompt() {
         Scanner input = new Scanner(System.in);
