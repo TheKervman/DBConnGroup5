@@ -94,9 +94,5 @@ public class DBConnFive{
       return false;
     }
     
-    /*public static void main (String[] args){
-      DBConnFive db = new DBConnFive();
-      db.connect();
-    }*/
        
 }       

@@ -25,7 +25,7 @@ public class MainView {
     private void guestMessage() {
         System.out.println("Welcome to the Guest Menu");
         System.out.println("Please select one of the following options to continue");
-        System.out.println("1: Display all topics\n2: Set up an interview\n3: Set up a presentation\n4: Go back to the main menu\n5: Exit the program");
+        System.out.println("1: Display all topics\n2: Learn about a topic\n3: Set up a presentation\n4: Go back to the main menu\n5: Exit the program");
         System.out.print("Please enter a number: ");
     }
 
@@ -91,7 +91,42 @@ public class MainView {
        } // end of while
 
    } // end of main user prompt
+   
+    public void loginPrompt(){
+    
+        System.out.println("Enter your username:");
+        Scanner input = new Scanner(System.in);
+        String loginName = input.nextLine();
 
+        System.out.println("Enter your password: ");
+        Scanner input2 = new Scanner(System.in);
+        String loginPassword = input2.nextLine();
+
+          if((loginName != "") && (loginPassword != "")) {
+            String loginName2 = loginName;
+            String loginPass2 = loginPassword;
+            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            DBConnFive db = new DBConnFive();
+            ArrayList<String> role = db.getData(checkRole);
+            String roleCheck =  role.get(0);
+            
+            if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
+                if (roleCheck == "Faculty"){
+                    facultyPrompt();
+                 }
+                if(roleCheck == "Student"){
+                    studentPrompt();
+                 }
+             }
+            else if(roleCheck == ""){
+                System.out.println("Enter a valid username and password!");
+            }
+            else{
+                System.out.println("Something went wrong!");
+            }
+          }
+          
+       }     
     private void guestPrompt() {
         Scanner input = new Scanner(System.in);
         String guestInput = "";
@@ -102,24 +137,17 @@ public class MainView {
                 //checks
                 switch (guestInput2) {
                     case 1:
-                        System.out.println("Showing all topics");
+                        System.out.println("Showing all topics with topic idenfication number");
                         DBConnFive drive = new DBConnFive();
-                        drive.getData("SELECT topicName FROM Topic");
+                        drive.getData("SELECT topicID,topicName FROM Topic");
                         break;
 
                     case 2:
-                        System.out.println("test");
-//                        System.out.println("Enter your name: ");
-//                        String Name = Scanner.nextLine();
-//
-//                        System.out.println("Enter the date: ");
-//                        String Date = Scanner.nextLine();
-//
-//                        System.out.println("Enter the faculty member: ");
-//                        String facMember = Scanner.nextLine();
-//
-//                        String sql2 = "INSERT INTO Interview (interviewName, interviewDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
-//                        Interview.insertQuery(sql2);
+                        System.out.println("Please input a topic identification number to learn about a topic");
+                        DBConnFive newdrive = new DBConnFive();
+                         Scanner inputTwo = new Scanner(System.in);
+                         int newInput = inputTwo.nextInt();
+                         newdrive.getData("SELECT * FROM Topic WHERE topicID = " + Integer.toString(newInput));
                         break;
 
                     case 3:
@@ -162,7 +190,7 @@ public class MainView {
         } // end of while
     } // end of guest prompt
 
-    private void loginPrompt() {
+     /*private void loginPrompt() {
         String userName = "test";
         String password = "password";
 
@@ -183,7 +211,7 @@ public class MainView {
             System.out.println("Incorrect username or password, please try again.");
         }
 
-    } // end of login prompt
+    } // end of login prompt*/
 
     private void facultyPrompt() {
         Scanner input = new Scanner(System.in);
