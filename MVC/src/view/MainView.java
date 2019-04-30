@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 public class MainView {
 
+   int loginUserID; 
     public MainView() {
         introMessage();
         mainUserPrompt();
@@ -226,10 +227,11 @@ public class MainView {
           if((loginName != "") && (loginPassword != "")) {
             String loginName2 = loginName;
             String loginPass2 = loginPassword;
-            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            String checkRole = "SELECT role,userID FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
             DBConnFive db = new DBConnFive();
             ArrayList<String> role = db.getData(checkRole);
             String roleCheck =  role.get(0);
+            loginUserID = Integer.parseInt(role.get(1));
             
             if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
                   if (roleCheck.equals("Faculty")){
