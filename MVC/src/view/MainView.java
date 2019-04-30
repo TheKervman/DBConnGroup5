@@ -11,6 +11,7 @@ package view;
 import controller.MainController;
 import driver.DBConnFive;
 import driver.Guest;
+import driver.Student;
 //import classes.Interview;
 //import classes.Presentation;
 import java.util.*;
@@ -283,10 +284,13 @@ public class MainView {
                 switch (studInput2) {
                     case 1:
                         System.out.println("List all topics");
+                        Student stud = new Student();
+                        stud.displayTopics();
                         break;
 
                     case 2:
                         System.out.println("List topics you're interested in");
+                        //commonTopics();
                         break;
 
                     case 3:
@@ -299,7 +303,7 @@ public class MainView {
                         System.out.println("Not a valid number.");
                         System.out.println("Please enter a valid number: ");
                         break;
-                } // enf of student switch
+                } // end of student switch
                 System.out.println("\n");
                 studentMessage();
             } catch (NumberFormatException nfe) {
