@@ -71,14 +71,15 @@ public class DBConnFive{
   }
    
    public int setData(String sql){
-      try(Connection connect = this.connect()){
+      try{
+      conn = connect();
       Statement state = conn.createStatement();
          if (state.executeUpdate(sql) > 0){
             return 1;
          }
       }
       catch(SQLException e){
-         System.out.println("No data  retrieved, Sorry!");
+         e.printStackTrace();
       }
       return -1;
    }

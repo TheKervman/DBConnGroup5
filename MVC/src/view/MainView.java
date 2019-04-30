@@ -20,6 +20,7 @@ import java.util.Scanner;
 
 public class MainView {
 
+   int loginUserID; 
     public MainView() {
         introMessage();
         mainUserPrompt();
@@ -41,7 +42,7 @@ public class MainView {
     private void guestMessage() {
         System.out.println("Welcome to the Guest Menu");
         System.out.println("Please select one of the following options to continue");
-        System.out.println("1: Display all topics\n2: Set up an interview\n3: Set up a presentation\n4: Go back to the main menu\n5: Exit the program");
+        System.out.println("1: Display all topics\n2: Learn More about a topic \n3: Set up a interview\n4: Set up a presentation\n5: Go back to the main menu\n6: Exit the program");
         System.out.print("Please enter a number: ");
     }
 
@@ -138,32 +139,60 @@ public class MainView {
                         break;
 
                     case 2:
-                        System.out.println("test");
-//
+                        System.out.println("Please input an ID number to learn more about a topic");
+                         Scanner newInput = new Scanner(System.in);
+                         int idInput;
+                         idInput = newInput.nextInt();
+                         Guest newGuest = new Guest();
+                         newGuest.getTopic(idInput); 
                         break;
 
                     case 3:
-                        System.out.println("test");
-//                        System.out.println("Enter your name: ");
-//                        String Name = Scanner.nextLine();
-//
-//                        System.out.println("Enter the date: ");
-//                        String Date = Scanner.nextLine();
-//
-//                        System.out.println("Enter the faculty member: ");
-//                        String facMember = Scanner.nextLine();
-//
-//                        String sql3 = "INSERT INTO Presentation (presentationName, presentationDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
-//                        Presentation.insertQuery(sql3);
-                        break;
+                        System.out.println("Please type in a Name,Date, and Faculty ID in that order to set your interview");
+                        System.out.println("Enter Name");
+                         Scanner intNameInput = new Scanner(System.in);
+                         String nameInput = intNameInput.nextLine();
 
-                    case 4:
+                         
+                         System.out.println("Enter Date");
+                         Scanner intDateInput = new Scanner(System.in);
+                         String dateInput = intDateInput.nextLine();
+
+                         
+                         System.out.println("Enter Faculty ID");
+                         Scanner intFacInput = new Scanner(System.in);
+                         int facInput = intFacInput.nextInt();
+                         
+                         Guest intGuest = new Guest();
+                         intGuest.addInterview(nameInput,dateInput,facInput);
+                        break;
+                     case 4:
+                        System.out.println("Please type in a Name,Date, and Faculty ID in that order to set your presentation");
+                           System.out.println("Enter Name");
+                         Scanner presNameInput = new Scanner(System.in);
+                         String presName = presNameInput.nextLine();
+
+                         
+                         System.out.println("Enter Date");
+                         Scanner presDateInput = new Scanner(System.in);
+                         String presDate = presDateInput.nextLine();
+
+                         
+                         System.out.println("Enter Faculty ID");
+                         Scanner presFacInput = new Scanner(System.in);
+                         int presFac = presFacInput.nextInt();
+                         
+                         Guest presGuest = new Guest();
+                         presGuest.addPresentation(presName,presDate,presFac);
+                        break;
+                        
+                    case 5:
                         clearScreen();
                         introMessage();
                         mainUserPrompt();
                         break;
 
-                    case 5:
+                    case 6:
                         clearScreen();
                         System.out.println("Thank you for using this program");
                         System.exit(1);
@@ -199,10 +228,11 @@ public class MainView {
           if((loginName != "") && (loginPassword != "")) {
             String loginName2 = loginName;
             String loginPass2 = loginPassword;
-            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            String checkRole = "SELECT role,userID FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
             DBConnFive db = new DBConnFive();
             ArrayList<String> role = db.getData(checkRole);
             String roleCheck =  role.get(0);
+            loginUserID = Integer.parseInt(role.get(1));
             
             if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
                   if (roleCheck.equals("Faculty")){
