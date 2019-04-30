@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import driver.DBConnFive;
+import driver.Guest;
 //import classes.Interview;
 //import classes.Presentation;
 import java.util.*;
@@ -131,23 +132,13 @@ public class MainView {
                 switch (guestInput2) {
                     case 1:
                         System.out.println("Showing all topics");
-                        DBConnFive drive = new DBConnFive();
-                        drive.getData("SELECT topicName FROM Topic");
+                        Guest guest = new Guest();
+                        guest.displayTopics();
                         break;
 
                     case 2:
                         System.out.println("test");
-//                        System.out.println("Enter your name: ");
-//                        String Name = Scanner.nextLine();
-//
-//                        System.out.println("Enter the date: ");
-//                        String Date = Scanner.nextLine();
-//
-//                        System.out.println("Enter the faculty member: ");
-//                        String facMember = Scanner.nextLine();
-//
-//                        String sql2 = "INSERT INTO Interview (interviewName, interviewDate, facultyMemeber) VALUES ('" + Name + "','" + Date + "','" + facMember + "');";
-//                        Interview.insertQuery(sql2);
+//                 
                         break;
 
                     case 3:
