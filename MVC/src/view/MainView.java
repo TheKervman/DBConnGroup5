@@ -52,7 +52,7 @@ public class MainView {
     }
 
     /**
-     * These messages get printed out when the User is verfied as a faculty member
+     * These messages get printed out when the User is verified as a faculty member
      */
     private void facultyMessage() {
         System.out.println("Welcome to the Faculty Menu");
@@ -62,7 +62,7 @@ public class MainView {
     }
 
     /**
-     * These messages get printed out when the User is verfied as a student
+     * These messages get printed out when the User is verified as a student
      */
     private void studentMessage() {
         System.out.println("Welcome to the Student Menu");
@@ -75,7 +75,6 @@ public class MainView {
     /**
      * Contains all the prompts that allow the program to function
      */
-
     private void mainUserPrompt() {
        Scanner input = new Scanner(System.in);  // Create a Scanner object
        String userInput = "";
@@ -194,7 +193,7 @@ public class MainView {
      * Brings up the login prompt that checks whether the user
      * is a faculty member or student
      */
-   public void loginPrompt(){
+    public void loginPrompt(){
       try {
         System.out.println("Enter your username:");
         Scanner input = new Scanner(System.in);
@@ -323,7 +322,6 @@ public class MainView {
     /**
      * Clears the screen
      */
-
     public static void clearScreen() {
         System.out.println("\n");
         System.out.println("\n");
