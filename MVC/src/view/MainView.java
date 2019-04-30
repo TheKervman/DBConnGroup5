@@ -10,6 +10,7 @@ package view;
 
 import controller.MainController;
 import driver.DBConnFive;
+import driver.Faculty;
 import driver.Guest;
 import driver.Student;
 //import classes.Interview;
@@ -131,14 +132,14 @@ public class MainView {
                 //checks
                 switch (guestInput2) {
                     case 1:
-                        System.out.println("Showing all topics");
+                        System.out.println("Showing all topics\n");
                         Guest guest = new Guest();
                         guest.displayTopics();
                         break;
 
                     case 2:
                         System.out.println("test");
-//                 
+//
                         break;
 
                     case 3:
@@ -226,7 +227,7 @@ public class MainView {
     /**
      * Brings up the prompt to allow the faculty member to select an action
      */
-    private void facultyPrompt() {
+    public void facultyPrompt() {
         Scanner input = new Scanner(System.in);
         String facInput = "";
         while ((facInput = input.nextLine()) != "") {
@@ -236,14 +237,16 @@ public class MainView {
                 //checks
                 switch (facInput2) {
                     case 1:
-                        System.out.println("List all topics");
+                        System.out.println("Showing all owned topics");
+                        Faculty fac1 = new Faculty();
+                        fac1.displayTopics();
                         break;
 
                     case 2:
-                        System.out.println("Edit topics (test student prompt)");
-                        clearScreen();
-                        studentMessage();
-                        studentPrompt();
+                        System.out.println("What would you like to do?");
+                        Faculty fac2 = new Faculty();
+                        fac2.editTopicMessage();
+                        fac2.editTopics();
                         break;
 
                     case 3:
