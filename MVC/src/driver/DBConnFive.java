@@ -52,16 +52,16 @@ public class DBConnFive{
             int colCount = rsmd.getColumnCount();
              
                while(rs.next()){
-                  for( int i = 1; i <=colCount; i++){
-                     data.add(rs.getString(i));
-                     
-                  }
-              }
-               for(String s: data){
-                 System.out.println(s);
+                  int id=rs.getInt("topicID");
+                  String name=rs.getString("topicName");
+                  String description=rs.getString("topicDescription");
+                  System.out.println(id+": "+name+": "+description+'\n');
+                  System.out.println("---------------------------------");
+               for(int i=1; i<colCount; i++){
+               data.add(rs.getString(i));
                }
           } 
-         
+         }
        catch(SQLException e){
          e.printStackTrace();
       }
