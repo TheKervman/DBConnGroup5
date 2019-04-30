@@ -12,7 +12,6 @@ public class Guest{
           Statement state = null; 
           conn = db.connect();
           String sql = "SELECT topicID,topicName FROM Topic;";
-          int col = 0;
           try{
             state = conn.createStatement();            
             ResultSet rs = state.executeQuery(sql);
@@ -37,5 +36,41 @@ public class Guest{
 
      return data;
   }
-   
+  
+  public void getTopic(int id){
+      String sql = "SELECT * FROM Topic WHERE topicID = " + Integer.toString(id);
+      int col = 0;
+          try{
+            DBConnFive dbFive = new DBConnFive();
+            conn = dbFive.connect();
+            Statement state = conn.createStatement();            
+            ResultSet rs = state.executeQuery(sql);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+             
+               while(rs.next()){
+                  for(int i = 1; i <= colCount; i++){
+                  System.out.println(rs.getString(i));
+               }             
+             }
+          } 
+         
+       catch(SQLException e){
+         e.printStackTrace();
+      }
+  
+  }
+  
+  public void addInterview(String name, String date, int facID){
+    DBConnFive dbFive= new DBConnFive();
+    dbFive.setData("INSERT INTO Interview (interviewName, interviewDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
+  
+  }
+  
+   public void addPresentation(String name, String date, int facID){
+    DBConnFive dbFive= new DBConnFive();
+    dbFive.setData("INSERT INTO Presentation (presentationName, presentationDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
+  
+  }
+     
 }
