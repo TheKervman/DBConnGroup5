@@ -194,28 +194,41 @@ public class MainView {
      * Brings up the login prompt that checks whether the user
      * is a faculty member or student
      */
-    private void loginPrompt() {
-        String userName = "test";
-        String password = "password";
+   public void loginPrompt(){
+    
+        System.out.println("Enter your username:");
+        Scanner input = new Scanner(System.in);
+        String loginName = input.nextLine();
 
-        System.out.print("Please enter your username: ");
-        Scanner name = new Scanner(System.in);
-        String uName = name.nextLine();
+        System.out.println("Enter your password: ");
+        Scanner input2 = new Scanner(System.in);
+        String loginPassword = input2.nextLine();
 
-        System.out.print("Please enter your password: ");
-        Scanner pass = new Scanner(System.in);
-        String pWord = pass.nextLine();
-
-        if (uName.equals(userName) && pWord.equals(password)) {
-            System.out.println("Login successfull!");
-            clearScreen();
-            facultyMessage();
-            facultyPrompt();
-        } else {
-            System.out.println("Incorrect username or password, please try again.");
-        }
-
-    } // end of login prompt
+          if((loginName != "") && (loginPassword != "")) {
+            String loginName2 = loginName;
+            String loginPass2 = loginPassword;
+            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            DBConnFive db = new DBConnFive();
+            ArrayList<String> role = db.getData(checkRole);
+            String roleCheck =  role.get(0);
+            
+            if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
+                if (roleCheck == "Faculty"){
+                    facultyPrompt();
+                 }
+                if(roleCheck == "Student"){
+                    studentPrompt();
+                 }
+             }
+            else if(roleCheck == ""){
+                System.out.println("Enter a valid username and password!");
+            }
+            else{
+                System.out.println("Something went wrong!");
+            }
+          }
+          
+       } // end of login prompt
 
     /**
      * Brings up the prompt to allow the faculty member to select an action
