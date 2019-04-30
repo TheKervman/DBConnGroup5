@@ -195,7 +195,7 @@ public class MainView {
      * is a faculty member or student
      */
    public void loginPrompt(){
-    
+      try {
         System.out.println("Enter your username:");
         Scanner input = new Scanner(System.in);
         String loginName = input.nextLine();
@@ -213,20 +213,22 @@ public class MainView {
             String roleCheck =  role.get(0);
             
             if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
-                if (roleCheck == "Faculty"){
-                    facultyPrompt();
-                 }
-                if(roleCheck == "Student"){
+                  if (roleCheck.equals("Faculty")){
+                     facultyMessage();
+                     facultyPrompt();
+                  }
+                if(roleCheck.equals("Student")){
+                    System.out.println("You are a student");
+                    studentMessage();
                     studentPrompt();
                  }
              }
-            else if(roleCheck == ""){
-                System.out.println("Enter a valid username and password!");
-            }
-            else{
-                System.out.println("Something went wrong!");
-            }
-          }
+           }  
+           
+         }
+        catch(Exception e){
+         System.out.println("Something went wrong. Please Try Again");
+        } 
           
        } // end of login prompt
 
