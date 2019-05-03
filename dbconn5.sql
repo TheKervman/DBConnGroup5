@@ -30,7 +30,6 @@ CREATE TABLE Student(
    topicThree varchar(25),
 	studName varchar(25),
 	email varchar(35),
-    interestID int(4),
 	PRIMARY KEY (studID)
 );
 -- Create Department
@@ -112,18 +111,24 @@ INSERT INTO Faculty (facID, facName, departmentCode) VALUES (9, 'Oakley Saad', '
 -- -------------------------------------------------
 -- Populate Student Table
 -- -------------------------------------------------
-INSERT INTO Student (studID, studName, email) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu');
-INSERT INTO Student (studID, studName, email) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu');
-INSERT INTO Student (studID, studName, email) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu');
-INSERT INTO Student (studID, studName, email) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu');
-INSERT INTO Student (studID, studName, email) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu');
+INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu','Coding Fun','More Coding Fun','AI');
+INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu', 'Gaming Stuff', 'Action RPGS','FPS');
+INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu','Coding Fun','More Coding Fun','AI');
+INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu','Gaming Stuff','Action RPGS','FPS');
+INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu', 'Coding Fun','More Coding Fun','AI');
 -- -------------------------------------------------
 -- Populate Topic Table
 -- -------------------------------------------------
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Coding Fun', 9, 'Learn how to have fun while coding');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Gaming Stuff', 3, 'Meet other gamers in the program');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('It\'s not that bad', 6, 'Don\'t let the coding get you down, it\'s still fun');
-INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('More Coding Fun', 9, 'Learn even more fun things');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('More Coding Fun', 1, 'Learn even more fun things');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Action RPGS', 3, 'Learn everything about Action Role-Playing Games');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('FPS', 3, 'Learn everything about FPS Games');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('AI', 1, 'Learn everything about AI');
+
+
+
 
 -- -------------------------------------------------
 -- Populate Interview Table
