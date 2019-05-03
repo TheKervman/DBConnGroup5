@@ -119,7 +119,7 @@ INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUE
 -- -------------------------------------------------
 -- Populate Topic Table
 -- -------------------------------------------------
-INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Coding Fun', 9, 'Learn how to have fun while coding');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Coding Fun', 1, 'Learn how to have fun while coding');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Gaming Stuff', 3, 'Meet other gamers in the program');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('It\'s not that bad', 6, 'Don\'t let the coding get you down, it\'s still fun');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('More Coding Fun', 1, 'Learn even more fun things');
