@@ -278,6 +278,11 @@ public class MainView {
 
                     case 3:
                         System.out.println("View interviews and presentations");
+                        Faculty fac3 = new Faculty();
+                        clearScreen();
+                        fac3.displayInterviews();
+                        System.out.println("");
+                        fac3.displayPresentations();
                         break;
 
                     case 4:
@@ -291,7 +296,7 @@ public class MainView {
                         System.out.println("Please enter a valid number: ");
                         break;
                 } // end of faculty switch
-                System.out.println("\n");
+                clearScreen();
                 facultyMessage();
             } catch (NumberFormatException nfe){
                 System.out.println("\n");
