@@ -8,13 +8,10 @@ package view;
  * @version 4-29-2019
  */
 
-import controller.MainController;
 import driver.DBConnFive;
 import driver.Faculty;
 import driver.Guest;
 import driver.Student;
-//import classes.Interview;
-//import classes.Presentation;
 import java.util.*;
 import java.util.Scanner;
 
