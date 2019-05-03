@@ -4,6 +4,7 @@ import view.MainView;
 
 import java.util.*;
 import java.sql.*;
+import java.util.Date;
 
 public class Faculty {
 
@@ -81,6 +82,78 @@ public class Faculty {
         System.out.println("1: Create a new topic\n2: Edit an existing topic\n3: Delete a topic\n4: Go back");
         System.out.print("Please enter a number: ");
     } // end of edit topic message
+
+    public ArrayList displayInterviews() {
+        //SELECT QUERY
+        ArrayList<String> data = new ArrayList<String>();
+        DBConnFive db = new DBConnFive();
+        String firstCol = null;
+        Statement state = null;
+        conn = db.connect();
+        String sql = "SELECT faculty.facName, interview.interviewName, interview.interviewDate FROM faculty JOIN interview ON interview.facId=faculty.facId WHERE faculty.facId = 1;";
+        int col = 0;
+        try {
+            state = conn.createStatement();
+            ResultSet rs = state.executeQuery(sql);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+
+            System.out.println("Here is a list of your interviews");
+            System.out.println("----------------------------------------------");
+
+            while(rs.next()) {
+                String name = rs.getString("facName");
+                String interview = rs.getString("interviewName");
+                String date = rs.getString("interviewDate");
+                System.out.println(name + " | " + interview + " | " + date);
+                System.out.println("----------------------------------------------");
+
+                for( int i = 1; i <= colCount; i++) {
+                    data.add(rs.getString(i));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    } // end of display interviews
+
+    public ArrayList displayPresentations() {
+        //SELECT QUERY
+        ArrayList<String> data = new ArrayList<String>();
+        DBConnFive db = new DBConnFive();
+        String firstCol = null;
+        Statement state = null;
+        conn = db.connect();
+        String sql = "SELECT faculty.facName, presentation.presentationName, presentation.presentationDate FROM faculty JOIN presentation ON presentation.facId=faculty.facId WHERE faculty.facId = 1;";
+        int col = 0;
+        try {
+            state = conn.createStatement();
+            ResultSet rs = state.executeQuery(sql);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+
+            System.out.println("Here is a list of your presentations");
+            System.out.println("----------------------------------------------");
+
+            while(rs.next()) {
+                String name = rs.getString("facName");
+                String interview = rs.getString("presentationName");
+                String date = rs.getString("presentationDate");
+                System.out.println(name + " | " + interview + " | " + date);
+                System.out.println("----------------------------------------------");
+
+                for( int i = 1; i <= colCount; i++) {
+                    data.add(rs.getString(i));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    } // end of display presentations
 
 
 } // end of class
