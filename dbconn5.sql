@@ -25,6 +25,9 @@ CREATE TABLE Faculty(
 -- Create Student
 CREATE TABLE Student(
 	studID int(4) ZEROFILL,
+   topicOne varchar(25),
+   topicTwo varchar(25),
+   topicThree varchar(25),
 	studName varchar(25),
 	email varchar(35),
     interestID int(4),
