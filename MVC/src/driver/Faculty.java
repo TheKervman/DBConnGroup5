@@ -10,7 +10,6 @@ public class Faculty {
     Connection conn = null;
 
     public ArrayList displayTopics(int id) {
-        //SELECT QUERY
         ArrayList<String> data = new ArrayList<String>();
         DBConnFive db = new DBConnFive();
         String firstCol = null;
