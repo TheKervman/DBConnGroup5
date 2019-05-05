@@ -25,9 +25,9 @@ CREATE TABLE Faculty(
 -- Create Student
 CREATE TABLE Student(
 	studID int(4) ZEROFILL,
-   topicOne varchar(25),
-   topicTwo varchar(25),
-   topicThree varchar(25),
+   topicOne int(4),
+   topicTwo int(4),
+   topicThree int(4),
 	studName varchar(25),
 	email varchar(35),
 	PRIMARY KEY (studID)
@@ -74,7 +74,7 @@ ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_UserID FOREIGN KEY (facID) REFEREN
 -- ALTER TABLE Faculty ADD CONSTRAINT FK_PresentationID FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID);
 -- Student Constraints
 ALTER TABLE Student ADD CONSTRAINT FK_Student_UserID FOREIGN KEY (studID) REFERENCES Users(userID);
-ALTER TABLE Student ADD CONSTRAINT FK_Student_InterestID FOREIGN KEY (interestID) REFERENCES Topic(topicID);
+-- ALTER TABLE Student ADD CONSTRAINT FK_Student_InterestID FOREIGN KEY (interestID) REFERENCES Topic(topicID);
 -- Topic Constraint
 ALTER TABLE Topic ADD CONSTRAINT FK_Topic_FacID FOREIGN KEY (facID) REFERENCES Faculty(facID);
 -- Interview Constraint
@@ -111,11 +111,11 @@ INSERT INTO Faculty (facID, facName, departmentCode) VALUES (9, 'Oakley Saad', '
 -- -------------------------------------------------
 -- Populate Student Table
 -- -------------------------------------------------
-INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu','Coding Fun','More Coding Fun','AI');
-INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu', 'Gaming Stuff', 'Action RPGS','FPS');
-INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu','Coding Fun','More Coding Fun','AI');
-INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu','Gaming Stuff','Action RPGS','FPS');
-INSERT INTO Student (studID, studName, email,topicOne,topicTwo,topicThree) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu', 'Coding Fun','More Coding Fun','AI');
+INSERT INTO Student (studID, studName, email) VALUES (2, 'Isaac Irving', 'ibi9854@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (5, 'Fabia Grayson', 'fig9890@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu');
 -- -------------------------------------------------
 -- Populate Topic Table
 -- -------------------------------------------------
@@ -148,5 +148,5 @@ select faculty.facid, faculty.facname, interview.interviewname, interview.interv
 
 select faculty.facid, faculty.facname, presentation.presentationName, presentation.presentationDate from faculty join presentation on faculty.facid=presentation.facid;
 
-update student set interestID = 4 where studID = 7;
-select student.studName, student.interestID, topic.topicName, topic.topicDescription from student join topic on student.interestID=topic.topicID;
+-- update student set interestID = 4 where studID = 7;
+-- select student.studName, student.interestID, topic.topicName, topic.topicDescription from student join topic on student.interestID=topic.topicID;
