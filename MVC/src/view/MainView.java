@@ -71,7 +71,7 @@ public class MainView {
     private void studentMessage() {
         System.out.println("Welcome to the Student Menu");
         System.out.println("Please select one of the following options to continue");
-        System.out.println("1: List all topics\n2: List all topics you've shown interest in\n3: Logout");
+        System.out.println("1: List all topics\n2: Add your three topics\n3: List all topics you are interested in\n4: Find other students inerested in the same topics\n5: Find more topics done by a specific professor\n6: Log Out");
         System.out.print("Please enter a number: ");
     }
 
@@ -228,14 +228,14 @@ public class MainView {
           if((loginName != "") && (loginPassword != "")) {
             String loginName2 = loginName;
             String loginPass2 = loginPassword;
-            String checkRole = "SELECT role,userID FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
             DBConnFive db = new DBConnFive();
             ArrayList<String> role = db.getData(checkRole);
-            String roleCheck =  role.get(0);
-            loginUserID = Integer.parseInt(role.get(1));
+            String roleCheck = role.get(0);
             
             if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
                   if (roleCheck.equals("Faculty")){
+                     System.out.println("You are a faculty member");
                      facultyMessage();
                      facultyPrompt();
                   }
@@ -320,13 +320,48 @@ public class MainView {
                         Student stud = new Student();
                         stud.displayTopics();
                         break;
-
+                        
                     case 2:
+                    System.out.println("Add a new topic");
+                    Student newStud = new Student();
+                    newStud.addTopic();
+                    break;
+                    
+                    case 3:
                         System.out.println("List topics you're interested in");
-                        //commonTopics();
+                        Student student = new Student();
+                        student.commonTopics();
                         break;
 
-                    case 3:
+                    case 4:
+                      System.out.println("Find out students who are interested in your topics");
+                      System.out.println("Please input your first topic");
+                      Scanner interestTopicInputOne = new Scanner(System.in);
+                      String interestInput = interestTopicInputOne.nextLine();
+                      
+                      System.out.println("Please input your second  topic");
+                      Scanner interestTopicInputTwo = new Scanner(System.in);
+                      String interestInputTwo = interestTopicInputTwo.nextLine();
+                      
+                      System.out.println("Please input your third topic");
+                      Scanner interestTopicInputThree = new Scanner(System.in);
+                      String interestInputThree = interestTopicInputThree.nextLine();
+                      
+                      Student studentThree = new Student();
+                      studentThree.listInterestedStuds( interestInput,interestInputTwo,interestInputThree);
+                     break; 
+                    
+                    case 5:
+                    System.out.println("Please input a Faculty ID number to find other topics created by specicific professor");
+                    
+                    Scanner facTopicInput = new Scanner(System.in);
+                    int facInput = facTopicInput.nextInt();
+                    
+                    Student studentTwo = new Student();
+                    studentTwo.sameFacultyTopics(facInput);
+                    break;
+                    
+                    case 6:
                         clearScreen();
                         introMessage();
                         mainUserPrompt();

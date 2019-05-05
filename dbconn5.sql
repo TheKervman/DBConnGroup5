@@ -25,9 +25,9 @@ CREATE TABLE Faculty(
 -- Create Student
 CREATE TABLE Student(
 	studID int(4) ZEROFILL,
-   topicOne int(4),
-   topicTwo int(4),
-   topicThree int(4),
+   topicOne varchar(25),
+   topicTwo varchar(25),
+   topicThree varchar(25),
 	studName varchar(25),
 	email varchar(35),
 	PRIMARY KEY (studID)
@@ -72,9 +72,11 @@ ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_DepartmentCode FOREIGN KEY (depart
 ALTER TABLE Faculty ADD CONSTRAINT FK_Faculty_UserID FOREIGN KEY (facID) REFERENCES Users(userID);
 -- ALTER TABLE Faculty ADD CONSTRAINT FK_InterviewID FOREIGN KEY (interviewID) REFERENCES Interview(interviewID);
 -- ALTER TABLE Faculty ADD CONSTRAINT FK_PresentationID FOREIGN KEY (presentationID) REFERENCES Presentation(presentationID);
+
 -- Student Constraints
 ALTER TABLE Student ADD CONSTRAINT FK_Student_UserID FOREIGN KEY (studID) REFERENCES Users(userID);
 -- ALTER TABLE Student ADD CONSTRAINT FK_Student_InterestID FOREIGN KEY (interestID) REFERENCES Topic(topicID);
+
 -- Topic Constraint
 ALTER TABLE Topic ADD CONSTRAINT FK_Topic_FacID FOREIGN KEY (facID) REFERENCES Faculty(facID);
 -- Interview Constraint
@@ -94,6 +96,9 @@ INSERT INTO Users (userName, password, role) VALUES ('utm6592', 'amusement06', '
 INSERT INTO Users (userName, password, role) VALUES ('ljt7409', 'rail07', 'Student');
 INSERT INTO Users (userName, password, role) VALUES ('oss730i', 'last08', 'Faculty');
 INSERT INTO Users (userName, password, role) VALUES ('jik8373', 'bouncy09', 'Student');
+INSERT INTO Users (userName, password, role) VALUES ('tst1000', 'test', 'Student');
+
+
 -- -------------------------------------------------
 -- Populate Department Table
 -- -------------------------------------------------
@@ -116,6 +121,8 @@ INSERT INTO Student (studID, studName, email) VALUES (5, 'Fabia Grayson', 'fig98
 INSERT INTO Student (studID, studName, email) VALUES (7, 'Usain Maddox', 'utm6592@rit.edu');
 INSERT INTO Student (studID, studName, email) VALUES (8, 'Lily Tamar', 'ljt7409@rit.edu');
 INSERT INTO Student (studID, studName, email) VALUES (10, 'Jabin Kaile', 'jik8373@rit.edu');
+INSERT INTO Student (studID, studName, email) VALUES (11, 'Test McGee', 'tst1000@rit.edu');
+
 -- -------------------------------------------------
 -- Populate Topic Table
 -- -------------------------------------------------
@@ -126,6 +133,8 @@ INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('More Coding Fun'
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('Action RPGS', 3, 'Learn everything about Action Role-Playing Games');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('FPS', 3, 'Learn everything about FPS Games');
 INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('AI', 1, 'Learn everything about AI');
+INSERT INTO Topic (topicName, facID, topicDescription) VALUES ('CS Fun', 4, 'Learn everything about CS');
+
 
 
 
