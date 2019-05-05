@@ -4,20 +4,18 @@ import view.MainView;
 
 import java.util.*;
 import java.sql.*;
-import java.util.Date;
 
 public class Faculty {
 
     Connection conn = null;
 
-    public ArrayList displayTopics() {
-        //SELECT QUERY
+    public ArrayList displayTopics(int id) {
         ArrayList<String> data = new ArrayList<String>();
         DBConnFive db = new DBConnFive();
         String firstCol = null;
         Statement state = null;
         conn = db.connect();
-        String sql = "SELECT topic.topicID, topic.topicName FROM Topic join Faculty on topic.facID=faculty.facID WHERE faculty.facID=9;";
+        String sql = "SELECT topic.topicID, topic.topicName FROM Topic join Faculty on topic.facID=faculty.facID WHERE faculty.facID = " + Integer.toString(id);
         int col = 0;
         try{
             state = conn.createStatement();
@@ -26,9 +24,9 @@ public class Faculty {
             int colCount = rsmd.getColumnCount();
 
             while(rs.next()){
-                int id = rs.getInt("topicID");
+                int idTopic = rs.getInt("topicID");
                 String name = rs.getString("topicName");
-                System.out.print(id + ":   " + name + '\n');
+                System.out.print(idTopic + ":   " + name + '\n');
                 System.out.println("---------------------------");
 
                 for( int i = 1; i <=colCount; i++){
@@ -54,22 +52,69 @@ public class Faculty {
                 switch (facTop2) {
                     case 1:
                         System.out.println("Create new topic");
+                        System.out.println("Please give the topicName, your Faculty ID, and a description to create a new Topic");
+                        
+                        System.out.println("Input Topic Name");
+                        Scanner topicName = new Scanner(System.in);
+                        String nameTopic = topicName.nextLine();
+                        
+                        System.out.println("Input your Faculty ID ");
+                        Scanner facultyID = new Scanner(System.in);
+                        int idFac = facultyID.nextInt();
+                                               
+                        System.out.println("Input Topic Description");
+                        Scanner topicDesc = new Scanner(System.in);
+                        String descTopic = topicDesc.nextLine();
+                        
+                        String insertSQL = "INSERT INTO Topic (topicName, facID, topicDescription) VALUES('"+nameTopic+"' ," + Integer.toString(idFac) + ",  '"+descTopic+"') ";
+                        DBConnFive insertDB = new DBConnFive();
+                        insertDB.setData(insertSQL);
+                        System.out.println("Successfully Inserted");
                         break;
 
                     case 2:
+                        DBConnFive updateDB = new DBConnFive();
+
                         System.out.println("Edit topic");
+                        System.out.println("Please input the name of the topic you would like to edit as well as a new name and new description");
+                        Scanner tpName = new Scanner(System.in);
+                        String oldTopicName = tpName.nextLine();
+                        
+                        System.out.println("Please input new name");
+                        Scanner newTpName = new Scanner(System.in);
+                        String newName = newTpName.nextLine();
+                        
+                        System.out.println("Please Input new description");
+                        Scanner tpDesc = new Scanner(System.in);
+                        String newDesc = tpDesc.nextLine();
+                        
+                        System.out.println("Please Input Faculty ID");
+                        Scanner idFaculty = new Scanner(System.in);
+                        int tpfacID = idFaculty.nextInt();
+                        
+                        String updateSQL = "UPDATE TOPIC SET topicName = '"+newName+"', topicDescription = '"+newDesc+"' WHERE facID = " + Integer.toString(tpfacID); 
+                        updateDB.setData(updateSQL);
                         break;
 
                     case 3:
                         System.out.println("Delete topic");
+                        DBConnFive deleteDB = new DBConnFive();
+                        System.out.println("Please input the name of the Topic you wish to delete");
+                         
+                        Scanner delete = new Scanner(System.in);
+                        String topicDeleted = delete.nextLine();
+                        String deleteSQL = "DELETE FROM Topic WHERE topicName = '"+topicDeleted+"' " ;
+                        deleteDB.setData(deleteSQL);
+                        System.out.println("Successfully Deleted");
                         break;
 
+                    
                     case 4:
                         MainView main = new MainView();
                         main.facultyPrompt();
                         break;
                 } // end of switch
-
+                editTopicMessage();
             } catch (NumberFormatException nfe) {
                 System.out.println("\n");
                 System.out.print("Please enter a valid number: ");
@@ -79,81 +124,26 @@ public class Faculty {
 
     public void editTopicMessage() {
         System.out.println("Please choose what you would like to do with your topics");
-        System.out.println("1: Create a new topic\n2: Edit an existing topic\n3: Delete a topic\n4: Go back");
+        System.out.println("1: Create a new topic\n2: Edit an existing topic\n3: Delete a topic\n4:Logout");
         System.out.print("Please enter a number: ");
     } // end of edit topic message
 
-    public ArrayList displayInterviews() {
-        //SELECT QUERY
-        ArrayList<String> data = new ArrayList<String>();
-        DBConnFive db = new DBConnFive();
-        String firstCol = null;
-        Statement state = null;
-        conn = db.connect();
-        String sql = "SELECT faculty.facName, interview.interviewName, interview.interviewDate FROM faculty JOIN interview ON interview.facId=faculty.facId WHERE faculty.facId = 1;";
-        int col = 0;
-        try {
-            state = conn.createStatement();
-            ResultSet rs = state.executeQuery(sql);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int colCount = rsmd.getColumnCount();
-
-            System.out.println("Here is a list of your interviews");
-            System.out.println("----------------------------------------------");
-
-            while(rs.next()) {
-                String name = rs.getString("facName");
-                String interview = rs.getString("interviewName");
-                String date = rs.getString("interviewDate");
-                System.out.println(name + " | " + interview + " | " + date);
-                System.out.println("----------------------------------------------");
-
-                for( int i = 1; i <= colCount; i++) {
-                    data.add(rs.getString(i));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return data;
-    } // end of display interviews
-
-    public ArrayList displayPresentations() {
-        //SELECT QUERY
-        ArrayList<String> data = new ArrayList<String>();
-        DBConnFive db = new DBConnFive();
-        String firstCol = null;
-        Statement state = null;
-        conn = db.connect();
-        String sql = "SELECT faculty.facName, presentation.presentationName, presentation.presentationDate FROM faculty JOIN presentation ON presentation.facId=faculty.facId WHERE faculty.facId = 1;";
-        int col = 0;
-        try {
-            state = conn.createStatement();
-            ResultSet rs = state.executeQuery(sql);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int colCount = rsmd.getColumnCount();
-
-            System.out.println("Here is a list of your presentations");
-            System.out.println("----------------------------------------------");
-
-            while(rs.next()) {
-                String name = rs.getString("facName");
-                String interview = rs.getString("presentationName");
-                String date = rs.getString("presentationDate");
-                System.out.println(name + " | " + interview + " | " + date);
-                System.out.println("----------------------------------------------");
-
-                for( int i = 1; i <= colCount; i++) {
-                    data.add(rs.getString(i));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return data;
-    } // end of display presentations
-
+   public void showAllPres(){
+      DBConnFive presDB = new DBConnFive();
+      System.out.println("Input faculty ID to show All your Presentations");
+      Scanner presID = new Scanner(System.in);
+      int facPres = presID.nextInt();
+      String presSQL = "SELECT * FROM Presentation WHERE facID = " + Integer.toString(facPres);
+      presDB.getData(presSQL);
+   }
+   
+     public void showAllInterviews(){
+      DBConnFive interDB = new DBConnFive();
+      System.out.println("Input faculty ID to show All your Interviews");
+      Scanner interID = new Scanner(System.in);
+      int facInter = interID.nextInt();
+      String interSQL = "SELECT * FROM Interview WHERE facID = " + Integer.toString(facInter);
+      interDB.getData(interSQL);
+   }
 
 } // end of class
