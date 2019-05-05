@@ -61,7 +61,7 @@ public class MainView {
     private void facultyMessage() {
         System.out.println("Welcome to the Faculty Menu");
         System.out.println("Please select one of the following options to continue");
-        System.out.println("1: Display all topics you own\n2: Edit your topics\n3: View interviews and presentations assigned to you\n4: Logout");
+        System.out.println("1: Display all topics you own\n2: Edit your topics\n3: View presentations assigned to you\n4: View interviews assigned to you\n5:Log Out");
         System.out.print("Please enter a number: ");
     }
 
@@ -268,8 +268,12 @@ public class MainView {
                 switch (facInput2) {
                     case 1:
                         System.out.println("Showing all owned topics");
+                        System.out.println("Please input your Faculty ID");
+                        Scanner Idinput = new Scanner(System.in);
+                        int facIDInput = Idinput.nextInt();
+                        
                         Faculty fac1 = new Faculty();
-                        fac1.displayTopics();
+                        fac1.displayTopics(facIDInput);
                         break;
 
                     case 2:
@@ -278,12 +282,19 @@ public class MainView {
                         fac2.editTopicMessage();
                         fac2.editTopics();
                         break;
-
                     case 3:
-                        System.out.println("View interviews and presentations");
+                        System.out.println("View presentations");
+                         Faculty fac3 = new Faculty();
+                         fac3.showAllPres();
+                        break;
+                        
+                    case 4:
+                        System.out.println("View presentations");
+                         Faculty fac4 = new Faculty();
+                         fac4.showAllInterviews();
                         break;
 
-                    case 4:
+                    case 5:
                         clearScreen();
                         introMessage();
                         mainUserPrompt();
@@ -329,8 +340,12 @@ public class MainView {
                     
                     case 3:
                         System.out.println("List topics you're interested in");
+                        System.out.println("Please input your student ID");
+                        Scanner Idinput = new Scanner(System.in);
+                        int studIdInput = input.nextInt();
+                   
                         Student student = new Student();
-                        student.commonTopics();
+                        student.commonTopics(studIdInput);
                         break;
 
                     case 4:
@@ -352,7 +367,7 @@ public class MainView {
                      break; 
                     
                     case 5:
-                    System.out.println("Please input a Faculty ID number to find other topics created by specicific professor");
+                    System.out.println("Please input a Faculty ID number to find other topics created by specific professor");
                     
                     Scanner facTopicInput = new Scanner(System.in);
                     int facInput = facTopicInput.nextInt();
@@ -389,7 +404,7 @@ public class MainView {
         System.out.println("\n");
         System.out.println("\n");
         System.out.println("\n");
-        System.out.print("\033[H\033[2J");
+        //System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 

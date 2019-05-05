@@ -64,12 +64,15 @@ public class Guest{
   public void addInterview(String name, String date, int facID){
     DBConnFive dbFive= new DBConnFive();
     dbFive.setData("INSERT INTO Interview (interviewName, interviewDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
+    System.otu.println("Sucessfully Added");
   
   }
   
    public void addPresentation(String name, String date, int facID){
     DBConnFive dbFive= new DBConnFive();
     dbFive.setData("INSERT INTO Presentation (presentationName, presentationDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
+    System.otu.println("Sucessfully Added");
+
   
   }
      
