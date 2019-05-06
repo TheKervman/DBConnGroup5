@@ -42,7 +42,7 @@ public class Faculty {
         return data;
     }
 
-    public void editTopics() {
+    public void editTopics(int id) {
         Scanner top = new Scanner(System.in);
         String facTop = "";
         while ((facTop = top.nextLine()) != "") {
@@ -128,22 +128,72 @@ public class Faculty {
         System.out.print("Please enter a number: ");
     } // end of edit topic message
 
-   public void showAllPres(){
+   public void showAllPres(int id){
+      ArrayList<String> data = new ArrayList<String>();
       DBConnFive presDB = new DBConnFive();
-      System.out.println("Input faculty ID to show All your Presentations");
-      Scanner presID = new Scanner(System.in);
-      int facPres = presID.nextInt();
-      String presSQL = "SELECT * FROM Presentation WHERE facID = " + Integer.toString(facPres);
-      presDB.getData(presSQL);
-   }
+      String interSQL = "SELECT presentationName ,presentationDate FROM Presentation WHERE facID = " + Integer.toString(id);
+      DBConnFive db = new DBConnFive();
+      Statement state = null;
+      conn = db.connect();
+      int col = 0;
+        try{
+            state = conn.createStatement();
+            ResultSet rs = state.executeQuery(interSQL);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+
+            while(rs.next()){
+                String name = rs.getString("presentationName");
+                String date = rs.getString("presentationDate");
+                System.out.print("Presentation Name: " + name + " || " + "Presentation Date: " + date + '\n');
+                System.out.println("------------------------------------------------------------------");
+
+                for( int i = 1; i <=colCount; i++){
+                    data.add(rs.getString(i));
+                }
+            }
+            if(data.size() == 0){
+               System.out.println("You have no Presentations");
+            }
+        }
+
+        catch(SQLException e){
+            e.printStackTrace();
+        } 
+      }
    
-     public void showAllInterviews(){
+     public void showAllInterviews(int id){
+      ArrayList<String> data = new ArrayList<String>();
       DBConnFive interDB = new DBConnFive();
-      System.out.println("Input faculty ID to show All your Interviews");
-      Scanner interID = new Scanner(System.in);
-      int facInter = interID.nextInt();
-      String interSQL = "SELECT * FROM Interview WHERE facID = " + Integer.toString(facInter);
-      interDB.getData(interSQL);
+      String interSQL = "SELECT interviewName ,interviewDate FROM Interview WHERE facID = " + Integer.toString(id);
+      DBConnFive db = new DBConnFive();
+      Statement state = null;
+      conn = db.connect();
+      int col = 0;
+        try{
+            state = conn.createStatement();
+            ResultSet rs = state.executeQuery(interSQL);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int colCount = rsmd.getColumnCount();
+
+            while(rs.next()){
+                String name = rs.getString("interviewName");
+                String date = rs.getString("interviewDate");
+                System.out.print("Interview Name: " + name + " || " + "Interview Date: " + date + '\n');
+                System.out.println("------------------------------------------------------------------");
+
+                for( int i = 1; i <=colCount; i++){
+                    data.add(rs.getString(i));
+                }
+            }
+            if(data.size() == 0){
+               System.out.println("You have no Interviews");
+            }
+        }
+
+        catch(SQLException e){
+            e.printStackTrace();
+        }
    }
 
 } // end of class

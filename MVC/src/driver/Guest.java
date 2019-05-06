@@ -38,40 +38,47 @@ public class Guest{
   }
   
   public void getTopic(int id){
+      ArrayList<String> data = new ArrayList<String>();
       String sql = "SELECT * FROM Topic WHERE topicID = " + Integer.toString(id);
+      DBConnFive db = new DBConnFive();
+      Statement state = null;
+      conn = db.connect();
       int col = 0;
-          try{
-            DBConnFive dbFive = new DBConnFive();
-            conn = dbFive.connect();
-            Statement state = conn.createStatement();            
+      
+        try{
+            state = conn.createStatement();
             ResultSet rs = state.executeQuery(sql);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int colCount = rsmd.getColumnCount();
-             
-               while(rs.next()){
-                  for(int i = 1; i <= colCount; i++){
-                  System.out.println(rs.getString(i));
-               }             
-             }
-          } 
+            
+            while(rs.next()){
+                int tpid = rs.getInt("topicID");
+                String name = rs.getString("topicName");
+                int facid = rs.getInt("facID");
+                String desc = rs.getString("topicDescription");
+                
+                System.out.println("Topic ID number: " + tpid); 
+                System.out.println("Topic Name: " + name);
+                System.out.println("Id number of Faculty memeber who owns the topic: " + facid);
+                System.out.println("Topic Description: " + desc);      
+            }
+          }  
          
-       catch(SQLException e){
-         e.printStackTrace();
-      }
-  
-  }
+         catch(Exception exc){
+            System.out.println("Something went wrong");
+            exc.printStackTrace();
+       }
+    }        
   
   public void addInterview(String name, String date, int facID){
     DBConnFive dbFive= new DBConnFive();
     dbFive.setData("INSERT INTO Interview (interviewName, interviewDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
-    System.otu.println("Sucessfully Added");
+    System.out.println("Sucessfully Added");
   
   }
   
    public void addPresentation(String name, String date, int facID){
     DBConnFive dbFive= new DBConnFive();
     dbFive.setData("INSERT INTO Presentation (presentationName, presentationDate, facID) VALUES( '"+name+"' , '"+date+"','"+Integer.toString(facID)+"');");
-    System.otu.println("Sucessfully Added");
+    System.out.println("Sucessfully Added");
 
   }
      

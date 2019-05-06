@@ -43,9 +43,8 @@ public class Student{
         //SELECT QUERY
         //ArrayList<String> data = new ArrayList<String>();
         DBConnFive db = new DBConnFive();
-        String firstCol = null;
-        Statement state = null;
         conn = db.connect();
+        Statement state = null;
         String sql = "SELECT topicOne,topicTwo,topicThree FROM Student WHERE studID = " + Integer.toString(id);
 
 
@@ -69,7 +68,7 @@ public class Student{
 
     }
     
-    public void addTopic(){
+    public void addTopic(int id){
    
      Scanner topicInput = new Scanner(System.in);
      System.out.println("Please enter topic name for your first Topic");
@@ -83,10 +82,6 @@ public class Student{
      Scanner topicInputThree = new Scanner(System.in);
      System.out.println("Please enter topic name for your third Topic ");
      String topicThree = topicInput.nextLine();
-     
-     
-     System.out.println("Please enter studentID");
-     int id = topicInput.nextInt();
      
      DBConnFive db = new DBConnFive();
      String sql = "UPDATE Student SET topicOne =  '"+topicOne+"', topicTwo =  '"+topicTwo+"', topicThree =  '"+topicThree+"'  WHERE studID = " + Integer.toString(id); 
