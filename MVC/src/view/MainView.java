@@ -17,7 +17,8 @@ import java.util.Scanner;
 
 public class MainView {
 
-   int loginUserID; 
+   public static  int logInUserID; //grabs id;
+   
     public MainView() {
         introMessage();
         mainUserPrompt();
@@ -136,7 +137,7 @@ public class MainView {
                         break;
 
                     case 2:
-                        System.out.println("Please input an ID number to learn more about a topic");
+                        System.out.println("Please input a topic id number to learn more about a topic");
                          Scanner newInput = new Scanner(System.in);
                          int idInput;
                          idInput = newInput.nextInt();
@@ -225,10 +226,13 @@ public class MainView {
           if((loginName != "") && (loginPassword != "")) {
             String loginName2 = loginName;
             String loginPass2 = loginPassword;
-            String checkRole = "SELECT role FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
+            String checkRole = "SELECT role, userID FROM Users WHERE userName='"+loginName2+"' AND password = '"+loginPass2+"';";
             DBConnFive db = new DBConnFive();
             ArrayList<String> role = db.getData(checkRole);
+            
             String roleCheck = role.get(0);
+            MainView.logInUserID = Integer.parseInt(role.get(1));
+        
             
             if ((!loginName2.isEmpty()) && (!loginPass2.isEmpty())){
                   if (roleCheck.equals("Faculty")){
@@ -266,23 +270,27 @@ public class MainView {
                     case 1:
                         System.out.println("Showing all owned topics");
                         Faculty fac1 = new Faculty();
-                        fac1.displayTopics();
+                        fac1.displayTopics(MainView.logInUserID);
                         break;
 
                     case 2:
                         System.out.println("What would you like to do?");
                         Faculty fac2 = new Faculty();
                         fac2.editTopicMessage();
-                        fac2.editTopics();
+                        fac2.editTopics(MainView.logInUserID);
                         break;
 
                     case 3:
                         System.out.println("View interviews and presentations");
                         Faculty fac3 = new Faculty();
                         clearScreen();
-                        fac3.displayInterviews();
+                        
+                        System.out.println("Here are all your Interviews");
+                        fac3.showAllInterviews(MainView.logInUserID);
                         System.out.println("");
-                        fac3.displayPresentations();
+                        
+                        System.out.println("Here are all your Presentations");
+                        fac3.showAllPres(MainView.logInUserID);
                         break;
 
                     case 4:
@@ -326,13 +334,13 @@ public class MainView {
                     case 2:
                     System.out.println("Add a new topic");
                     Student newStud = new Student();
-                    newStud.addTopic();
+                    newStud.addTopic(MainView.logInUserID);
                     break;
                     
                     case 3:
                         System.out.println("List topics you're interested in");
                         Student student = new Student();
-                        student.commonTopics();
+                        student.commonTopics(MainView.logInUserID);
                         break;
 
                     case 4:
@@ -354,7 +362,7 @@ public class MainView {
                      break; 
                     
                     case 5:
-                    System.out.println("Please input a Faculty ID number to find other topics created by specicific professor");
+                    System.out.println("Please input a Faculty ID number to find other topics created by specific professor");
                     
                     Scanner facTopicInput = new Scanner(System.in);
                     int facInput = facTopicInput.nextInt();
@@ -391,7 +399,7 @@ public class MainView {
         System.out.println("\n");
         System.out.println("\n");
         System.out.println("\n");
-        System.out.print("\033[H\033[2J");
+        //System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
